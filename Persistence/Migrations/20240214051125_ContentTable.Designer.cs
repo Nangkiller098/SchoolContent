@@ -11,7 +11,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240206092430_ContentTable")]
+    [Migration("20240214051125_ContentTable")]
     partial class ContentTable
     {
         /// <inheritdoc />
@@ -26,14 +26,23 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("GoogleMap")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("Status")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Telephone")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
