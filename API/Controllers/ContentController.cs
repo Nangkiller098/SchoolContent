@@ -23,5 +23,12 @@ namespace API.Controllers
             await Mediator.Send(new Create.Command { Content = content });
             return Ok();
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Content>> EditContent(int id, Content content)
+        {
+            content.Id = id;
+            await Mediator.Send(new Edit.Command { Content = content });
+            return Ok();
+        }
     }
 }

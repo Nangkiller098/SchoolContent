@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "OQ/1YoYrzb0P2hvkctBjEDMKSKJpLhFKlke+UnP0KhjHCmd1c0RjLw6CERwmS4Kba2T0dSogwg5CQ0+k0AYOJQ==",
+  "dgSpecHash": "PPNl9bhfr2D9txw4lZO4VG1RGZz3VPA64iFkQMQ+Tomz/K1khXg6RVB2uvrBt4TMXV/pT1zc5tGzZboXR7PIvQ==",
   "success": true,
-  "projectFilePath": "D:\\Project\\SchoolContent\\API\\API.csproj",
+  "projectFilePath": "d:\\Project\\SchoolContent\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\NK\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\NK\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\NK\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\NK\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "C:\\Users\\NK\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
@@ -13,6 +15,7 @@
     "C:\\Users\\NK\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.5.0\\microsoft.codeanalysis.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\NK\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\4.5.0\\microsoft.codeanalysis.csharp.workspaces.4.5.0.nupkg.sha512",
     "C:\\Users\\NK\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.5.0\\microsoft.codeanalysis.workspaces.common.4.5.0.nupkg.sha512",
+    "C:\\Users\\NK\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\NK\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.1\\microsoft.data.sqlite.core.8.0.1.nupkg.sha512",
     "C:\\Users\\NK\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.1\\microsoft.entityframeworkcore.8.0.1.nupkg.sha512",
     "C:\\Users\\NK\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.1\\microsoft.entityframeworkcore.abstractions.8.0.1.nupkg.sha512",

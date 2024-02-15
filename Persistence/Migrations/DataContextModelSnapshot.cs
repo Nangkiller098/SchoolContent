@@ -23,23 +23,17 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Address")
+                    b.Property<DateTime>("CreateAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreateAt")
+                    b.Property<DateTime>("DateModify")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("GoogleMap")
-                        .HasColumnType("TEXT");
-
                     b.Property<bool>("Status")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Telephone")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");

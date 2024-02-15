@@ -22,6 +22,7 @@ namespace Application.Contents
                 public async Task<Content> Handle(Query request, CancellationToken cancellationToken)
                 {
                     return await _context.Contents.FindAsync(request.Id);
+
                 }
             }
         }
