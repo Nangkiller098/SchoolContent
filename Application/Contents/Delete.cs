@@ -1,32 +1,28 @@
-using AutoMapper;
-using Domain;
 using MediatR;
 using Persistence;
 
 namespace Application.Contents
 {
-    public class Edit
+    public class Delete
     {
         public class Command : IRequest
         {
-            public Content Content { get; set; }
+            public int Id { get; set; }
         }
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
-            private readonly IMapper _mapper;
-            public Handler(DataContext context, IMapper mapper)
+            public Handler(DataContext context)
             {
-                _mapper = mapper;
                 _context = context;
             }
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var content = await _context.Contents.FindAsync(request.Content.Id);
-                request.Content.CreateAt = content.CreateAt;
-                _mapper.Map(request.Content, content);
+                var content = await _context.Contents.FindAsync(request.Id);
+                _context.Remove(content);
                 await _context.SaveChangesAsync();
+
             }
         }
     }

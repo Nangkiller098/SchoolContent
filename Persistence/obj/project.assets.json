@@ -1301,8 +1301,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "d:\\Project\\SchoolContent\\Domain\\Domain.csproj": {
-              "projectPath": "d:\\Project\\SchoolContent\\Domain\\Domain.csproj"
+            "D:\\Project\\SchoolContent\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\Project\\SchoolContent\\Domain\\Domain.csproj"
             }
           }
         }

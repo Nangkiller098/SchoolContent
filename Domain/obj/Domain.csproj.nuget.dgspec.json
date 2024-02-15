@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Project\\SchoolContent\\Domain\\Domain.csproj": {}
+    "D:\\Project\\SchoolContent\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "d:\\Project\\SchoolContent\\Domain\\Domain.csproj": {
+    "D:\\Project\\SchoolContent\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Project\\SchoolContent\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\Project\\SchoolContent\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "d:\\Project\\SchoolContent\\Domain\\Domain.csproj",
+        "projectPath": "D:\\Project\\SchoolContent\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\NK\\.nuget\\packages\\",
-        "outputPath": "d:\\Project\\SchoolContent\\Domain\\obj\\",
+        "outputPath": "D:\\Project\\SchoolContent\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
