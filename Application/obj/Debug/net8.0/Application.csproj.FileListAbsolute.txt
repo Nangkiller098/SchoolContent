@@ -10,9 +10,9 @@ D:\Project\SchoolContent\Application\obj\Debug\net8.0\Application.GeneratedMSBui
 D:\Project\SchoolContent\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
 D:\Project\SchoolContent\Application\obj\Debug\net8.0\Application.AssemblyInfo.cs
 D:\Project\SchoolContent\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
+D:\Project\SchoolContent\Application\obj\Debug\net8.0\Application.sourcelink.json
 D:\Project\SchoolContent\Application\obj\Debug\net8.0\Application.csproj.CopyComplete
 D:\Project\SchoolContent\Application\obj\Debug\net8.0\Application.dll
 D:\Project\SchoolContent\Application\obj\Debug\net8.0\refint\Application.dll
 D:\Project\SchoolContent\Application\obj\Debug\net8.0\Application.pdb
 D:\Project\SchoolContent\Application\obj\Debug\net8.0\ref\Application.dll
-D:\Project\SchoolContent\Application\obj\Debug\net8.0\Application.sourcelink.json
