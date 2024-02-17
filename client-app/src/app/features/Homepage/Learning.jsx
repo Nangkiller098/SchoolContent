@@ -12,7 +12,7 @@ export function Learning() {
   return (
     <>
       <div className="w-full h-full lg:flex justify-center pt-4 gap-10 ">
-        <div className="pb-4">
+        <div className="pb-4 p-4">
           <Card className="w-full h-full lg:w-96 ">
             <Typography
               variant="h5"
