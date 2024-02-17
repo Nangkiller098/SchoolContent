@@ -19,16 +19,6 @@ const Banner = () => {
           // alt="image 3"
           className="h-full w-full object-cover object-center"
         />
-        {/* <img
-          src="banner/5.jpg"
-          // alt="image 3"
-          className="h-full w-full object-cover object-center"
-        /> */}
-        {/* <img
-          src="banner/6.jpg"
-          // alt="image 3"
-          className="h-full w-full object-cover object-center"
-        /> */}
       </Carousel>
     </div>
   );

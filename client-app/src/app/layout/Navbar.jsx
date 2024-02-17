@@ -82,7 +82,7 @@ export function NavbarSimple() {
 
   return (
     <>
-      <Navbar fullWidth className=" bg-yellow-600 pr-10">
+      <Navbar fullWidth className=" bg-yellow-600 pr-10 w-full">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
             as="a"
