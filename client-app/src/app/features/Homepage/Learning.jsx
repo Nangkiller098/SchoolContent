@@ -1,41 +1,143 @@
 import {
+  List,
+  ListItem,
+  ListItemPrefix,
+  Avatar,
   Card,
-  CardHeader,
-  CardBody,
   Typography,
+  Button,
 } from "@material-tailwind/react";
 
 export function Learning() {
   return (
     <>
-      <div className="lg:grid grid-2 grid-flow-col gap-4  items-center text-center lg:pt-10 lg:p-[30vh] lg:pb-2">
-        <div className=" bg-cyan-500 rounded-xl">
-          <Card className="w-full max-w-[48rem] flex-row rounded-xl">
-            <CardHeader
-              shadow={false}
-              floated={false}
-              className="m-0 w-2/5 shrink-0 rounded-r-none"
+      <div className="w-full h-full lg:flex justify-center pt-4 gap-10 ">
+        <div className="pb-4">
+          <Card className="w-full h-full lg:w-96 ">
+            <Typography
+              variant="h5"
+              color="blue-gray"
+              className=" items-center text-center pt-4"
             >
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-                alt="card-image"
-                className="h-full w-full object-cover"
-              />
-            </CardHeader>
-            <CardBody>
-              <Typography variant="h4" color="blue-gray" className="mb-2">
-                Lyft launching cross-platform service this week
-              </Typography>
-              <Typography color="gray" className="mb-8 font-normal">
-                Like so many organizations these days, Autodesk is a company in
-                transition. It was until recently a traditional boxed software
-                company selling licenses. Yet its own business model disruption
-                is only part of the story
-              </Typography>
-            </CardBody>
+              Learning Resource
+            </Typography>
+            <List>
+              <ListItem>
+                <ListItemPrefix>
+                  <Avatar
+                    src="https://docs.material-tailwind.com/img/face-2.jpg"
+                    alt="avatar"
+                    variant="square"
+                    size="xxl"
+                    className="w-96"
+                  />
+                </ListItemPrefix>
+                <div>
+                  <Typography variant="h6" color="blue-gray">
+                    Tania Andrew
+                  </Typography>
+                  <Typography
+                    variant="small"
+                    color="gray"
+                    className="font-normal text-justify"
+                  >
+                    Our graduates are following their dreams Our graduates are
+                    following their dream Our graduates are Our graduates are
+                    following their dreams Our ....
+                  </Typography>
+                </div>
+              </ListItem>
+              <ListItem className="">
+                <ListItemPrefix>
+                  <Avatar
+                    src="https://docs.material-tailwind.com/img/face-2.jpg"
+                    alt="avatar"
+                    variant="square"
+                    size="xxl"
+                    className="w-96"
+                  />
+                </ListItemPrefix>
+                <div>
+                  <Typography variant="h5" color="blue-gray">
+                    Tania Andrew
+                  </Typography>
+                  <Typography
+                    variant="small"
+                    color="gray"
+                    className="font-normal text-justify"
+                  >
+                    Our graduates are following their dreams Our graduates are
+                    following their dream Our graduates are Our graduates are
+                    following their dreams Our ....
+                  </Typography>
+                </div>
+              </ListItem>
+              <ListItem className="">
+                <ListItemPrefix>
+                  <Avatar
+                    src="https://docs.material-tailwind.com/img/face-2.jpg"
+                    alt="avatar"
+                    variant="square"
+                    size="xxl"
+                    className="w-96"
+                  />
+                </ListItemPrefix>
+                <div>
+                  <Typography variant="h5" color="blue-gray">
+                    Tania Andrew
+                  </Typography>
+                  <Typography
+                    variant="small"
+                    color="gray"
+                    className="font-normal text-justify"
+                  >
+                    Our graduates are following their dreams Our graduates are
+                    following their dream Our graduates are Our graduates are
+                    following their dreams Our ....
+                  </Typography>
+                </div>
+              </ListItem>
+            </List>
+            <div className=" items-center text-center pb-3">
+              <Button className=" bg-green-600">Read More</Button>
+            </div>
           </Card>
         </div>
-        <div className=" bg-cyan-500 rounded-xl">2</div>
+        <div className="pb-4">
+          <Card className="w-full h-full lg:w-96 ">
+            <Typography
+              variant="h5"
+              color="blue-gray"
+              className=" items-center text-center pt-4"
+            >
+              Video
+            </Typography>
+            <List>
+              <ListItem>
+                <video className="h-full w-full rounded-none" controls>
+                  <source
+                    src="https://docs.material-tailwind.com/demo.mp4"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              </ListItem>
+              <ListItem>
+                {" "}
+                <video className="h-full w-full rounded-lg" controls>
+                  <source
+                    src="https://docs.material-tailwind.com/demo.mp4"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              </ListItem>
+              <div className=" items-center text-center">
+                <Button className=" bg-green-600 pb-3">Read More</Button>
+              </div>
+            </List>
+          </Card>
+        </div>
       </div>
     </>
   );

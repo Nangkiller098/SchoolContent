@@ -127,7 +127,7 @@ export function NewsEvents() {
     ],
   };
   return (
-    <div className="slider-container lg:pt-0 lg:p-[30vh] lg:pb-2">
+    <div className="slider-container lg:pt-0 lg:p-[2vh] lg:pb-2">
       <Slider {...settings}>
         {data.map((d) => (
           <Card key={d.id} className="h-full w-full">
