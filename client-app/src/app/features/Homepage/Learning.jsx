@@ -11,6 +11,11 @@ import {
 export function Learning() {
   return (
     <>
+      <div className="bg-yellow-600 p-5 text-white font-bold text-lg w-full h-full">
+        <h1 className="uppercase text-center mt-0">
+          <a href="">Learning & Resource</a>
+        </h1>
+      </div>
       <div className="w-full h-full lg:flex justify-center pt-4 gap-10 ">
         <div className="pb-4 p-4">
           <Card className="w-full h-full lg:w-96 ">

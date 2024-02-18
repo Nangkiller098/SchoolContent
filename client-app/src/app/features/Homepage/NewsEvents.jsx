@@ -127,38 +127,45 @@ export function NewsEvents() {
     ],
   };
   return (
-    <div className="slider-container lg:pt-0 lg:p-[2vh] lg:pb-2">
-      <Slider {...settings}>
-        {data.map((d) => (
-          <Card key={d.id} className="h-full w-full">
-            <CardHeader
-              floated={false}
-              shadow={false}
-              color="transparent"
-              className="rounded-sm "
-            >
-              <img
-                src={d.imageUrl}
-                alt="ui/ux review check"
-                className="w-full h-full"
-              />
-            </CardHeader>
-            <CardBody>
-              <Typography
-                variant="h6"
-                color="blue-gray"
-                className="mb-2 w-full h-full "
+    <>
+      <div className="bg-yellow-600 p-5 text-white font-bold text-lg w-full h-full">
+        <h1 className="uppercase text-center mt-0">
+          <a href="">NEWS &amp; EVENTS</a>
+        </h1>
+      </div>
+      <div className="slider-container lg:pt-0 lg:p-[2vh] lg:pb-2">
+        <Slider {...settings}>
+          {data.map((d) => (
+            <Card key={d.id} className="h-full w-full">
+              <CardHeader
+                floated={false}
+                shadow={false}
+                color="transparent"
+                className="rounded-sm "
               >
-                {d.title}
-              </Typography>
-              <Typography>{d.description}</Typography>
-            </CardBody>
-            <CardFooter className="pt-0">
-              <Button className=" bg-green-600">Read More</Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </Slider>
-    </div>
+                <img
+                  src={d.imageUrl}
+                  alt="ui/ux review check"
+                  className="w-full h-full"
+                />
+              </CardHeader>
+              <CardBody>
+                <Typography
+                  variant="h6"
+                  color="blue-gray"
+                  className="mb-2 w-full h-full "
+                >
+                  {d.title}
+                </Typography>
+                <Typography>{d.description}</Typography>
+              </CardBody>
+              <CardFooter className="pt-0">
+                <Button className=" bg-green-600">Read More</Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </Slider>
+      </div>
+    </>
   );
 }
