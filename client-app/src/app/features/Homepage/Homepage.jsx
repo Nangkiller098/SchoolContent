@@ -3,6 +3,8 @@ import { NewsEvents } from "./NewsEvents";
 import { Learning } from "./Learning";
 import OurProgram from "./OurProgram";
 import Testimotional from "./Testimotional";
+import ManagementTeam from "./ManagementTeam";
+import OurPartner from "./OurPartner";
 const Homepage = () => {
   return (
     <>
@@ -11,6 +13,8 @@ const Homepage = () => {
       <Learning />
       <OurProgram />
       <Testimotional />
+      <ManagementTeam />
+      <OurPartner />
     </>
   );
 };
