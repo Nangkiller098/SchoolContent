@@ -133,7 +133,7 @@ export function NewsEvents() {
           <a href="">NEWS &amp; EVENTS</a>
         </h1>
       </div>
-      <div className="slider-container lg:pt-0 lg:p-[40vh] md:p-0 lg:pb-2">
+      <div className="slider-container 2xl:px-[40vh] lg:pb-2">
         <Slider {...settings}>
           {data.map((d) => (
             <Card key={d.id} className="h-full w-full">

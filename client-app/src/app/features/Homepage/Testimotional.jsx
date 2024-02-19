@@ -11,7 +11,7 @@ const Testimotional = () => {
         <Typography variant="h3" className="text-center py-4">
           WHAT STUDENTS
         </Typography>
-        <Typography variant="lead" className="text-justify lg:px-96">
+        <Typography variant="lead" className="text-justify 2xl:px-96 m-4">
           I’m extremely grateful for my parents’ decision on enrolling me in
           Sovannaphumi School. I couldn’t fully express my heartfelt gratitude
           towards all the teachers and staff during these 12 years of mine as an
