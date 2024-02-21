@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jgjqTG4vQ5knPycZIH/cSKAQfsn80FSAreLEJUaLgr4ZI9u2yWwbiJESxxl6leyUo0Mg1Gf0vWPC8VMvqv1zcw==",
+  "dgSpecHash": "L+xImUzjEobjWCxRnn57+SI3Q+b/w8jGQOUmu7ODlnrdpKKWMowd8Q4NzLycxJxMEaoga1DlJOo/m28uOFKuEg==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\Exercise\\SchoolContent\\api\\API.csproj",
+  "projectFilePath": "D:\\Projects\\Exercise\\SchoolContent\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ripdo\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ripdo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

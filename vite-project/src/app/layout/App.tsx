@@ -1,4 +1,5 @@
-import Homepage from "../../features/homepage/Homepage";
+import { Outlet } from "react-router-dom";
+
 import { Footer } from "./Footer";
 import Logo from "./Logo";
 import { NavbarSimple } from "./Navbar";
@@ -8,7 +9,7 @@ function App() {
     <div className=" overflow-hidden">
       <Logo />
       <NavbarSimple />
-      <Homepage />
+      <Outlet />
       <Footer />
     </div>
   );

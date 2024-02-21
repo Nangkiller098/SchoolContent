@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import axios from "axios";
 import { Content } from "../../app/models/Content";
+
+
 export function NewsEvents() {
   const settings = {
     dots: false,

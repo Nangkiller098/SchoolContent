@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\Exercise\\SchoolContent\\api\\API.csproj": {}
+    "D:\\Projects\\Exercise\\SchoolContent\\API\\API.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\Exercise\\SchoolContent\\api\\API.csproj": {
+    "D:\\Projects\\Exercise\\SchoolContent\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Exercise\\SchoolContent\\api\\API.csproj",
+        "projectUniqueName": "D:\\Projects\\Exercise\\SchoolContent\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "D:\\Projects\\Exercise\\SchoolContent\\api\\API.csproj",
+        "projectPath": "D:\\Projects\\Exercise\\SchoolContent\\API\\API.csproj",
         "packagesPath": "C:\\Users\\ripdo\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Exercise\\SchoolContent\\api\\obj\\",
+        "outputPath": "D:\\Projects\\Exercise\\SchoolContent\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ripdo\\AppData\\Roaming\\NuGet\\NuGet.Config",
