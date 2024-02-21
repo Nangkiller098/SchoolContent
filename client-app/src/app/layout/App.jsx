@@ -7,7 +7,7 @@ import Logo from "./Logo";
 function App() {
   return (
     <div className=" overflow-hidden">
-      <Logo />  
+      <Logo />
       <NavbarSimple />
       <Homepage />
       <Footer />
