@@ -8,10 +8,13 @@ interface Props {
 const NewsEventsList = ({ contents }: Props) => {
   return (
     <>
-      <Card placeholder={""} className="w-96">
-        <List placeholder={""}>
+      <Card
+        placeholder={""}
+        className="w-96 2xl:w-[1000px] lg:w-full md:w-full my-10"
+      >
+        <List placeholder={""} className="">
           {contents.map((content) => (
-            <NewsEventCard content={content} />
+            <NewsEventCard key={content.id} content={content} />
           ))}
         </List>
       </Card>

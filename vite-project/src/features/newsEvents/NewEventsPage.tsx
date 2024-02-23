@@ -11,9 +11,9 @@ const NewEventsPage = () => {
     });
   }, []);
   return (
-    <>
+    <div className="flex justify-center">
       <NewsEventsList contents={contents} />
-    </>
+    </div>
   );
 };
 

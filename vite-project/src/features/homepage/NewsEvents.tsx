@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import axios from "axios";
 import { Content } from "../../app/models/Content";
-
+import { Link } from "react-router-dom";
 
 export function NewsEvents() {
   const settings = {
@@ -59,7 +59,7 @@ export function NewsEvents() {
     <>
       <div className="bg-yellow-600 p-5 text-white font-bold text-lg w-full h-full">
         <h1 className="uppercase text-center mt-0">
-          <a href="">NEWS &amp; EVENTS</a>
+          <Link to={"/content"}>NEWS &amp; EVENTS</Link>
         </h1>
       </div>
 
@@ -91,11 +91,12 @@ export function NewsEvents() {
                 >
                   {content.title}
                 </Typography>
+                <Typography placeholder={""}>{content.createAt}</Typography>
                 <Typography placeholder={""}>{content.description}</Typography>
               </CardBody>
               <CardFooter placeholder={""} className="pt-0">
                 <Button placeholder={""} className=" bg-green-600">
-                  Read More
+                  <Link to={`/content/${content.id}`}>Read More</Link>
                 </Button>
               </CardFooter>
             </Card>
