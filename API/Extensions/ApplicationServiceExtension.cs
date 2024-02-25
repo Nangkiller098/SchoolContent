@@ -1,4 +1,5 @@
 
+using System.Text.Json.Serialization;
 using Application.Contents;
 using Application.Core;
 using Microsoft.EntityFrameworkCore;
@@ -26,8 +27,9 @@ namespace API.Extensions
                 });
             });
 
-            
+
             // services.AddMediatR(typeof(List.Handler));
+            services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddAutoMapper(typeof(MappingProfile).Assembly);
             return services;
         }

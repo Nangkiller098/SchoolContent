@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +18,9 @@ namespace Application.Contents
 
             public async Task<List<Content>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Contents.ToListAsync();
+                return await _context.Contents
+                .Include(c => c.Article)
+                .ToListAsync();
             }
         }
     }

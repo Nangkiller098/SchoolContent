@@ -10,6 +10,12 @@ namespace Application.Core
         {
             CreateMap<Content, Content>();
             CreateMap<Content, ContentDto>();
+
+            CreateMap<Domain.Category, Domain.Category>();
+            CreateMap<Domain.Category, CategoryDto>();
+
+            CreateMap<Article, Article>();
+            CreateMap<Article, ArticleDto>();
         }
     }
 }
