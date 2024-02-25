@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Content } from "../../app/models/Content";
 import NewsEventsList from "./NewsEventsList";
 import agent from "../../app/api/agent";
+import NewsEventForm from "./form/NewsEventForm";
 
 const NewEventsPage = () => {
   const [contents, setContents] = useState<Content[]>([]);
@@ -11,6 +12,7 @@ const NewEventsPage = () => {
   return (
     <div className="flex justify-center">
       <NewsEventsList contents={contents} />
+      <NewsEventForm />
     </div>
   );
 };
