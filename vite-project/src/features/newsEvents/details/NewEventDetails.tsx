@@ -1,29 +1,18 @@
-/* eslint-disable no-irregular-whitespace */
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Content } from "../../app/models/Content";
 import {
+  Button,
   Card,
   CardBody,
   CardFooter,
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
-import agent from "../../app/api/agent";
+import { Content } from "../../../app/models/Content";
 
-const NewEventDetails = () => {
-  const { id } = useParams<{ id: string }>();
-  const [content, setContent] = useState<Content | null>(null);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    id &&
-      agent.Content.details(parseInt(id))
-        .then((res) => setContent(res))
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
-  }, [id]);
-  if (loading) return <h3>Loading...</h3>;
-  if (!content) return <h3>Content Not Found</h3>;
+interface Props {
+  content: Content;
+  cancelSelectContent: () => void;
+}
+const NewEventDetails = ({ content, cancelSelectContent }: Props) => {
   return (
     <>
       <div>
@@ -33,6 +22,7 @@ const NewEventDetails = () => {
           alt="nature image"
         />
       </div>
+      <div>{content.id}</div>
       <div className="2xl:mx-96 text-justify">
         <Card placeholder={undefined} className="w-full mt-10 justify-center">
           <CardHeader
@@ -59,17 +49,21 @@ const NewEventDetails = () => {
             >
               {content.description}
             </Typography>
-          </CardBody>
-          <CardFooter
-            placeholder={undefined}
-            className="flex items-center justify-between"
-          >
             <div className="w-full">
               <img
                 src="https://www.bbu.edu.kh/photos/article/2024-02-08 10.05.49.jpg"
                 alt="ui/ux review check"
               />
             </div>
+          </CardBody>
+          <CardFooter
+            placeholder={undefined}
+            className="flex items-center justify-between"
+          >
+            <Button placeholder={undefined}>Edit</Button>
+            <Button onClick={cancelSelectContent} placeholder={undefined}>
+              Cancel
+            </Button>
           </CardFooter>
         </Card>
       </div>
