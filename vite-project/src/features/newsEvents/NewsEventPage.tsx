@@ -21,6 +21,7 @@ const NewsEventPage = () => {
   function handleCancelSelectContent() {
     setSelectedContent(undefined);
   }
+
   function handleFormOpen(id?: string) {
     id ? handleSelectedContent(id) : handleCancelSelectContent();
     setEditMode(true);
@@ -28,6 +29,19 @@ const NewsEventPage = () => {
 
   function handleFormClose() {
     setEditMode(false);
+  }
+
+  function handleCandEContent(content: Content) {
+    content.id
+      ? setContents([...contents.filter((x) => x.id !== content.id), content])
+      : setContents([...contents, content]);
+    setEditMode(false);
+    setSelectedContent(content);
+  }
+
+  function handleDeleteContent(id: string) {
+    setContents([...contents.filter((x) => x.id !== id)]);
+    handleFormClose();
   }
 
   return (
@@ -40,6 +54,8 @@ const NewsEventPage = () => {
         editMode={editMode}
         openForm={handleFormOpen}
         closeForm={handleFormClose}
+        createOrEdit={handleCandEContent}
+        deleteContent={handleDeleteContent}
       />
     </>
   );

@@ -11,6 +11,8 @@ interface Props {
   editMode: boolean;
   openForm: (id: string) => void;
   closeForm: () => void;
+  createOrEdit: (content: Content) => void;
+  deleteContent: (id: string) => void;
 }
 const NewEventsDashboard = ({
   contents,
@@ -20,19 +22,27 @@ const NewEventsDashboard = ({
   editMode,
   openForm,
   closeForm,
+  createOrEdit,
+  deleteContent,
 }: Props) => {
   return (
     <div className="flex justify-center">
       <NewsEventsList contents={contents} selectContent={selectContent} />
-      {selectedContent && (
+      {selectedContent && !editMode && (
         <NewEventDetails
           content={selectedContent}
           cancelSelectContent={cancelSelectContent}
           openForm={openForm}
         />
       )}
-      {editMode &&  <NewsEventForm closeForm={closeForm} content={selectedContent}}
-      />
+      {editMode && (
+        <NewsEventForm
+          closeForm={closeForm}
+          content={selectedContent}
+          createOrEdit={createOrEdit}
+          deleteContent={deleteContent}
+        />
+      )}
     </div>
   );
 };

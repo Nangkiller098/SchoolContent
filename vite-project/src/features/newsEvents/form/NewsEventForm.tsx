@@ -1,108 +1,144 @@
-import {
-  Button,
-  Card,
-  Checkbox,
-  Input,
-  Typography,
-} from "@material-tailwind/react";
+import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
+import { Content } from "../../../app/models/Content";
+import { ChangeEvent, useState } from "react";
 
-const NewsEventForm = () => {
+interface Props {
+  content: Content | undefined;
+  closeForm: () => void;
+  createOrEdit: (content: Content) => void;
+  deleteContent: (id: string) => void;
+}
+
+const NewsEventForm = ({
+  content: selectedContent,
+  closeForm,
+  createOrEdit,
+  deleteContent,
+}: Props) => {
+  const initialState = selectedContent ?? {
+    id: "",
+    title: "",
+    description: "",
+    createAt: "",
+    status: true,
+  };
+  const [content, setContents] = useState(initialState);
+
+  function handleSubmit() {
+    // console.log(content);
+    createOrEdit(content);
+  }
+
+  function handleInputChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const { name, value } = event.target;
+    setContents({ ...content, [name]: value });
+  }
+
   return (
     <>
-      <Card placeholder={""} color="transparent" shadow={false}>
-        <Typography placeholder={""} variant="h4" color="blue-gray">
-          News & Events
-        </Typography>
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-          <div className="mb-1 flex flex-col gap-6">
-            <Typography
-              placeholder={""}
-              variant="h6"
-              color="blue-gray"
-              className="-mb-3"
-            >
-              Title
-            </Typography>
-            <Input
-              size="lg"
-              placeholder="name@mail.com"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-              crossOrigin={undefined}
-            />
-            <Typography
-              placeholder={""}
-              variant="h6"
-              color="blue-gray"
-              className="-mb-3"
-            >
-              Description
-            </Typography>
-            <Input
-              size="lg"
-              placeholder="name@mail.com"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-              crossOrigin={undefined}
-            />
-            <Typography
-              placeholder={""}
-              variant="h6"
-              color="blue-gray"
-              className="-mb-3"
-            >
-              Password
-            </Typography>
-            <Input
-              type="password"
-              size="lg"
-              placeholder="********"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-              crossOrigin={undefined}
-            />
-          </div>
-          <Checkbox
-            label={
-              <Typography
-                placeholder={""}
-                variant="small"
-                color="gray"
-                className="flex items-center font-normal"
-              >
-                I agree the
-                <a
-                  href="#"
-                  className="font-medium transition-colors hover:text-gray-900"
-                >
-                  &nbsp;Terms and Conditions
-                </a>
-              </Typography>
-            }
-            containerProps={{ className: "-ml-2.5" }}
-            crossOrigin={undefined}
-          />
-          <Button className="mt-6" fullWidth placeholder={undefined}>
-            sign up
-          </Button>
+      <Typography placeholder={""} variant="h4" color="blue-gray">
+        News & Events
+      </Typography>
+      <form
+        onSubmit={handleSubmit}
+        autoComplete="off"
+        className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+      >
+        <div className="mb-1 flex flex-col gap-6">
           <Typography
-            color="gray"
-            className="mt-4 text-center font-normal"
+            placeholder={""}
+            variant="h6"
+            color="blue-gray"
+            className="-mb-3"
+          >
+            Title
+          </Typography>
+          <Input
+            size="lg"
+            placeholder="name@mail.com"
+            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+            labelProps={{
+              className: "before:content-none after:content-none",
+            }}
+            crossOrigin={undefined}
+            value={content.title}
+            name="title"
+            onChange={handleInputChange}
+          />
+          <Typography
+            placeholder={""}
+            variant="h6"
+            color="blue-gray"
+            className="-mb-3"
+          >
+            Description
+          </Typography>
+
+          <Textarea
+            size="lg"
+            placeholder=""
+            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+            labelProps={{
+              className: "before:content-none after:content-none",
+            }}
+            value={content.description}
+            name="description"
+            onChange={handleInputChange}
+          />
+          <Typography
+            placeholder={""}
+            variant="h6"
+            color="blue-gray"
+            className="-mb-3"
+          >
+            Date
+          </Typography>
+
+          <Input
+            size="lg"
+            placeholder=""
+            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+            labelProps={{
+              className: "before:content-none after:content-none",
+            }}
+            crossOrigin={undefined}
+            value={content.createAt}
+            name="createAt"
+            onChange={handleInputChange}
+          />
+          <Button
+            type="submit"
+            // content="Submit"
+            color="green"
+            className=""
+            fullWidth
             placeholder={undefined}
           >
-            Already have an account?{" "}
-            <a href="#" className="font-medium text-gray-900">
-              Sign In
-            </a>
-          </Typography>
-        </form>
-      </Card>
+            Create
+          </Button>
+          <Button
+            // content="Submit"
+            color="red"
+            className=""
+            fullWidth
+            placeholder={undefined}
+            onClick={() => deleteContent(content.id)}
+          >
+            Delete
+          </Button>
+          <Button
+            color="amber"
+            onClick={() => closeForm()}
+            className=""
+            fullWidth
+            placeholder={undefined}
+          >
+            Cancel
+          </Button>
+        </div>
+      </form>
     </>
   );
 };

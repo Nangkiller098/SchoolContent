@@ -11,8 +11,9 @@ import { Content } from "../../../app/models/Content";
 interface Props {
   content: Content;
   cancelSelectContent: () => void;
+  openForm: (id: string) => void;
 }
-const NewEventDetails = ({ content, cancelSelectContent }: Props) => {
+const NewEventDetails = ({ content, cancelSelectContent, openForm }: Props) => {
   return (
     <>
       <div>
@@ -22,7 +23,6 @@ const NewEventDetails = ({ content, cancelSelectContent }: Props) => {
           alt="nature image"
         />
       </div>
-      <div>{content.id}</div>
       <div className="2xl:mx-96 text-justify">
         <Card placeholder={undefined} className="w-full mt-10 justify-center">
           <CardHeader
@@ -60,7 +60,12 @@ const NewEventDetails = ({ content, cancelSelectContent }: Props) => {
             placeholder={undefined}
             className="flex items-center justify-between"
           >
-            <Button placeholder={undefined}>Edit</Button>
+            <Button
+              onClick={() => openForm(content.id)}
+              placeholder={undefined}
+            >
+              Edit
+            </Button>
             <Button onClick={cancelSelectContent} placeholder={undefined}>
               Cancel
             </Button>

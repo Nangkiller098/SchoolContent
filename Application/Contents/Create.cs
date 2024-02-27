@@ -20,7 +20,6 @@ namespace Application.Contents
 
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                request.Content.CreateAt = DateTime.Now;
                 _context.Contents.Add(request.Content);
                 await _context.SaveChangesAsync();
 
