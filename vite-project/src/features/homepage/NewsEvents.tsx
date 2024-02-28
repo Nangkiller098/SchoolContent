@@ -75,9 +75,7 @@ export function NewsEvents() {
                 className="rounded-sm "
               >
                 <img
-                  src={
-                    "https://www.bbu.edu.kh/photos/article/2024-02-08 10.05.49.jpg"
-                  }
+                  src={"/image/content.jpg"}
                   alt="ui/ux review check"
                   className="w-full h-full"
                 />

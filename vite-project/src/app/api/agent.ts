@@ -1,10 +1,19 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { Content } from "../models/Content";
+
+//set sleep request api for 10000 second
+const sleep = (delay: number) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+};
 
 axios.defaults.baseURL = "http://localhost:5000/api/";
 const responseBody = (response: AxiosResponse) => response.data;
 
 axios.interceptors.response.use(
-  (response) => {
+  async (response) => {
+    await sleep(1000);
     return response;
   },
   (error: AxiosError) => {
@@ -14,15 +23,17 @@ axios.interceptors.response.use(
 );
 
 const requests = {
-  get: (url: string) => axios.get(url).then(responseBody),
-  post: (url: string, body: object) => axios.post(url, body).then(responseBody),
-  put: (url: string, body: object) => axios.put(url, body).then(responseBody),
-  delete: (url: string) => axios.delete(url).then(responseBody),
+  get: <T>(url: string) => axios.get<T>(url).then(responseBody),
+  post: <T>(url: string, body: object) =>
+    axios.post<T>(url, body).then(responseBody),
+  put: <T>(url: string, body: object) =>
+    axios.put<T>(url, body).then(responseBody),
+  delete: <T>(url: string) => axios.delete<T>(url).then(responseBody),
 };
 
 const Content = {
-  list: () => requests.get("content"),
-  details: (id: number) => requests.get(`content/${id}`),
+  list: () => requests.get<Content[]>("content"),
+  details: (id: number) => requests.get<Content>(`content/${id}`),
 };
 const TestErros = {
   get400Error: () => requests.get(`bugg/bad-request`),

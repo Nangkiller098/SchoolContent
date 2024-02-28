@@ -50,10 +50,7 @@ const NewEventDetails = ({ content, cancelSelectContent, openForm }: Props) => {
               {content.description}
             </Typography>
             <div className="w-full">
-              <img
-                src="https://www.bbu.edu.kh/photos/article/2024-02-08 10.05.49.jpg"
-                alt="ui/ux review check"
-              />
+              <img src="/image/content.jpg" alt="ui/ux review check" />
             </div>
           </CardBody>
           <CardFooter

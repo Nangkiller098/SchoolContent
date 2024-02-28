@@ -4,7 +4,6 @@ import AboutPage from "../../features/about/AboutPage";
 import ContactPage from "../../features/contact/ContactPage";
 // import NewEventDetails from "../../features/newsEvents/details/NewEventDetails";
 import Homepage from "../../features/Homepage/Homepage";
-import NewsEventPage from "../../features/newsEvents/NewsEventPage";
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +11,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <Homepage /> },
-      { path: "content", element: <NewsEventPage /> },
+      // { path: "content", element: <NewsEventPage /> },
       // { path: "content/:id", element: <NewEventDetails /> },
       { path: "about", element: <AboutPage /> },
       { path: "contact", element: <ContactPage /> },

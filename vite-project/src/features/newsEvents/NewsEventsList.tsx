@@ -18,7 +18,7 @@ const NewsEventsList = ({ contents, selectContent }: Props) => {
     <>
       <Card
         placeholder={""}
-        className="w-96 2xl:w-[1000px] lg:w-full md:w-full my-10"
+        className="w-96 2xl:w-[100vh]  lg:w-full md:w-[50vh] my-10"
       >
         <List placeholder={""}>
           {" "}
@@ -26,20 +26,20 @@ const NewsEventsList = ({ contents, selectContent }: Props) => {
             <ListItem
               placeholder={""}
               key={content.id}
-              className=" text-start items-center flex justify-center 2xl:flex-row flex-col w-full lg:flex-row md:flex-row"
+              className=" text-center items-center flex justify-items-center 2xl:flex-row flex-col w-full lg:flex-row md:flex"
             >
-              <div className="w-96 h-full">
+              <div className="w-96 2xl:w-[50vh] h-full">
                 <ListItemPrefix placeholder={""} className=" px-4">
                   <Avatar
                     placeholder={""}
                     variant="square"
                     alt="candice"
-                    src="https://www.bbu.edu.kh/photos/article/2024-02-08 10.05.49.jpg"
-                    className="w-full h-full"
+                    src="/image/content.jpg"
+                    className="w-full h-full 2xl:h-96"
                   />
                 </ListItemPrefix>
               </div>
-              <div className="">
+              <div className="text-center items-center justify-center">
                 <Typography
                   placeholder={""}
                   variant="h6"
