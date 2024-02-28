@@ -26,7 +26,7 @@ namespace API.Controllers
             return Ok();
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<Category>> EditCategory(int id, Category category)
+        public async Task<ActionResult<Category>> EditCategory(Guid id, Category category)
         {
             category.Id = id;
             await Mediator.Send(new Edit.Command { Category = category });

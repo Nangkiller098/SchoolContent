@@ -11,6 +11,7 @@ interface Props {
   closeForm: () => void;
   createOrEdit: (content: Content) => void;
   deleteContent: (id: string) => void;
+  submitting: boolean;
 }
 const NewsEventPage = ({
   contents,
@@ -22,6 +23,7 @@ const NewsEventPage = ({
   closeForm,
   createOrEdit,
   deleteContent,
+  submitting,
 }: Props) => {
   return (
     <>
@@ -35,6 +37,7 @@ const NewsEventPage = ({
         closeForm={closeForm}
         createOrEdit={createOrEdit}
         deleteContent={deleteContent}
+        submitting={submitting}
       />
     </>
   );

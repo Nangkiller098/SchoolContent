@@ -25,14 +25,14 @@ namespace API.Controllers
             return Ok();
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<Content>> EditArticle(int id, Article article)
+        public async Task<ActionResult<Content>> EditArticle(Guid id, Article article)
         {
             article.Id = id;
             await Mediator.Send(new Edit.Command { Article = article });
             return Ok();
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Content>> RemoveArticle(int id)
+        public async Task<ActionResult<Content>> RemoveArticle(Guid id)
         {
             await Mediator.Send(new Delete.Command { Id = id });
             return Ok();

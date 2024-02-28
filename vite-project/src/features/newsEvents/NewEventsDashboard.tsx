@@ -13,6 +13,7 @@ interface Props {
   closeForm: () => void;
   createOrEdit: (content: Content) => void;
   deleteContent: (id: string) => void;
+  submitting: boolean;
 }
 const NewEventsDashboard = ({
   contents,
@@ -24,6 +25,7 @@ const NewEventsDashboard = ({
   closeForm,
   createOrEdit,
   deleteContent,
+  submitting,
 }: Props) => {
   return (
     <div className="flex justify-center">
@@ -37,6 +39,7 @@ const NewEventsDashboard = ({
       )}
       {editMode && (
         <NewsEventForm
+          submitting={submitting}
           closeForm={closeForm}
           content={selectedContent}
           createOrEdit={createOrEdit}

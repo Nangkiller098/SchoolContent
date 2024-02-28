@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Content } from "../../app/models/Content";
 import agent from "../../app/api/agent";
 import { LoadingComponent } from "./LoadingComponent";
+import { v4 as uuid } from "uuid";
 
 function App() {
   const [contents, setContents] = useState<Content[]>([]);
@@ -14,6 +15,7 @@ function App() {
   );
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     agent.Content.list().then((response) => {
@@ -45,11 +47,22 @@ function App() {
   }
 
   function handleCandEContent(content: Content) {
-    content.id
-      ? setContents([...contents.filter((x) => x.id !== content.id), content])
-      : setContents([...contents, content]);
-    setEditMode(false);
-    setSelectedContent(content);
+    setSubmitting(true);
+    content.id = uuid();
+    if (content.id) {
+      agent.Content.update(content).then(() => {
+        setContents([...contents.filter((x) => x.id !== content.id), content]);
+        setSelectedContent(content);
+        setEditMode(false);
+        setSubmitting(false);
+      });
+    } else {
+      agent.Content.create(content).then(() => {});
+      setContents([...contents, content]);
+      setSelectedContent(content);
+      setEditMode(false);
+      setSubmitting(false);
+    }
   }
 
   function handleDeleteContent(id: string) {
@@ -62,7 +75,7 @@ function App() {
   return (
     <div className=" overflow-hidden">
       <Logo />
-      <NavbarSimple />
+      <NavbarSimple openForm={handleFormOpen} />
       {/* <Outlet /> */}
       <NewsEventPage
         contents={contents}
@@ -74,6 +87,7 @@ function App() {
         closeForm={handleFormClose}
         createOrEdit={handleCandEContent}
         deleteContent={handleDeleteContent}
+        submitting={submitting}
       />
       <Footer />
     </div>

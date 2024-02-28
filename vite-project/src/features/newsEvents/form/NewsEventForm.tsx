@@ -7,6 +7,7 @@ interface Props {
   closeForm: () => void;
   createOrEdit: (content: Content) => void;
   deleteContent: (id: string) => void;
+  submitting: boolean;
 }
 
 const NewsEventForm = ({
@@ -14,6 +15,7 @@ const NewsEventForm = ({
   closeForm,
   createOrEdit,
   deleteContent,
+  submitting,
 }: Props) => {
   const initialState = selectedContent ?? {
     id: "",
@@ -110,7 +112,7 @@ const NewsEventForm = ({
           />
           <Button
             type="submit"
-            // content="Submit"
+            loading={submitting}
             color="green"
             className=""
             fullWidth

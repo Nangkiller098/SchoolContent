@@ -34,6 +34,10 @@ const requests = {
 const Content = {
   list: () => requests.get<Content[]>("content"),
   details: (id: number) => requests.get<Content>(`content/${id}`),
+  create: (content: Content) => requests.post<void>(`content`, content),
+  update: (content: Content) =>
+    requests.put<void>(`content/${content.id}`, content),
+  delete: (id: string) => requests.delete<void>(`content/${id}`),
 };
 const TestErros = {
   get400Error: () => requests.get(`bugg/bad-request`),

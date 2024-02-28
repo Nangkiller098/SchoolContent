@@ -7,7 +7,7 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
-function NavList() {
+function NavList({ openForm }: Props) {
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -63,14 +63,16 @@ function NavList() {
           href="#"
           className="flex items-center hover:text-blue-500 transition-colors"
         >
-          Docs
+          Create Content
         </a>
       </Typography>
     </ul>
   );
 }
-
-export function NavbarSimple() {
+interface Props {
+  openForm: (id: string) => void;
+}
+export function NavbarSimple({ openForm }: Props) {
   const [openNav, setOpenNav] = React.useState(false);
 
   const handleWindowResize = () =>
@@ -98,7 +100,7 @@ export function NavbarSimple() {
             Material Tailwind
           </Typography>
           <div className="hidden lg:block">
-            <NavList />
+            <NavList openForm={openForm} />
           </div>
           <IconButton
             placeholder=""
@@ -115,7 +117,7 @@ export function NavbarSimple() {
           </IconButton>
         </div>
         <Collapse open={openNav} className="">
-          <NavList />
+          <NavList openForm={openForm} />
         </Collapse>
       </Navbar>
     </>

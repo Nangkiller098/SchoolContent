@@ -11,7 +11,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240224064200_ArticleCategoryTable")]
+    [Migration("20240228094257_ArticleCategoryTable")]
     partial class ArticleCategoryTable
     {
         /// <inheritdoc />
@@ -22,15 +22,15 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Article", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ArticleName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Status")
                         .HasColumnType("INTEGER");
@@ -44,9 +44,9 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("TEXT");
@@ -64,12 +64,12 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Content", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("ArticleId")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("TEXT");
