@@ -23,6 +23,7 @@ const NewsEventForm = ({
     description: "",
     createAt: "",
     status: true,
+    article: [],
   };
   const [content, setContents] = useState(initialState);
 
@@ -110,6 +111,20 @@ const NewsEventForm = ({
             name="createAt"
             onChange={handleInputChange}
           />
+          <Typography
+            placeholder={""}
+            variant="h6"
+            color="blue-gray"
+            className="-mb-3"
+          >
+            Article
+          </Typography>
+          <select className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+            <option value="brazil">Brazil</option>
+            <option value="bucharest">Bucharest</option>
+            <option value="london">London</option>
+            <option value="washington">Washington</option>
+          </select>
           <Button
             type="submit"
             loading={submitting}

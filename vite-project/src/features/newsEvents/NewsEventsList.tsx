@@ -20,7 +20,7 @@ const NewsEventsList = ({ contents, selectContent }: Props) => {
         placeholder={""}
         className="w-96 2xl:w-[100vh]  lg:w-full md:w-[50vh] my-10 shadow-none"
       >
-        <List placeholder={""}>
+        <List placeholder={""} className=" gap-4">
           {" "}
           {contents.map((content) => (
             <ListItem
@@ -35,7 +35,7 @@ const NewsEventsList = ({ contents, selectContent }: Props) => {
                     variant="square"
                     alt="candice"
                     src="/image/content.jpg"
-                    className="w-auto h-full 2xl:h-96 "
+                    className="w-auto h-full 2xl:h-auto"
                   />
                 </ListItemPrefix>
               </div>
