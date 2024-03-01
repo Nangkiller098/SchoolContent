@@ -6,8 +6,10 @@ import {
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import React from "react";
+import { useStore } from "../stores/store";
 
-function NavList({ openForm }: Props) {
+function NavList() {
+  const { contentStore } = useStore();
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -60,6 +62,7 @@ function NavList({ openForm }: Props) {
         className="p-1 font-medium"
       >
         <a
+          onClick={() => contentStore.openForm()}
           href="#"
           className="flex items-center hover:text-blue-500 transition-colors"
         >
@@ -69,10 +72,8 @@ function NavList({ openForm }: Props) {
     </ul>
   );
 }
-interface Props {
-  openForm: (id: string) => void;
-}
-export function NavbarSimple({ openForm }: Props) {
+
+export function NavbarSimple() {
   const [openNav, setOpenNav] = React.useState(false);
 
   const handleWindowResize = () =>
@@ -100,7 +101,7 @@ export function NavbarSimple({ openForm }: Props) {
             Material Tailwind
           </Typography>
           <div className="hidden lg:block">
-            <NavList openForm={openForm} />
+            <NavList />
           </div>
           <IconButton
             placeholder=""
@@ -117,7 +118,7 @@ export function NavbarSimple({ openForm }: Props) {
           </IconButton>
         </div>
         <Collapse open={openNav} className="">
-          <NavList openForm={openForm} />
+          <NavList />
         </Collapse>
       </Navbar>
     </>

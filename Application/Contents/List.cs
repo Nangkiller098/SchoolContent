@@ -18,8 +18,10 @@ namespace Application.Contents
 
             public async Task<List<Content>> Handle(Query request, CancellationToken cancellationToken)
             {
+                var article = _context.Articles.ToListAsync();
                 return await _context.Contents
                 .Include(c => c.Article)
+                .FirstOrDefaultAsync(c => c.ArticleId == article.Id)
                 .Where(c => c.Status == true)
                 .ToListAsync();
             }

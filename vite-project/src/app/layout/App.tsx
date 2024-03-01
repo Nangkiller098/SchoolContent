@@ -1,50 +1,29 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Footer } from "./Footer";
 import Logo from "./Logo";
 import { NavbarSimple } from "./Navbar";
-import NewsEventPage from "../../features/newsEvents/NewsEventPage";
 import { useEffect, useState } from "react";
 import { Content } from "../../app/models/Content";
 import agent from "../../app/api/agent";
 import { LoadingComponent } from "./LoadingComponent";
 import { v4 as uuid } from "uuid";
+import { useStore } from "../stores/store";
+import { observer } from "mobx-react-lite";
+import NewEventsDashboard from "../../features/newsEvents/NewEventsDashboard";
 
 function App() {
+  const { contentStore } = useStore();
   const [contents, setContents] = useState<Content[]>([]);
   const [selectedContent, setSelectedContent] = useState<Content | undefined>(
     undefined
   );
   const [editMode, setEditMode] = useState(false);
-  const [loading, setLoading] = useState(true);
+
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    agent.Content.list().then((response) => {
-      const contents: Content[] = [];
-      response.forEach((content: Content) => {
-        content.createAt = content.createAt.split("T")[0];
-        contents.push(content);
-      });
-      setContents(contents);
-      setLoading(false);
-    });
-  }, []);
-
-  function handleSelectedContent(id: string) {
-    setSelectedContent(contents.find((x) => x.id === id));
-  }
-
-  function handleCancelSelectContent() {
-    setSelectedContent(undefined);
-  }
-
-  function handleFormOpen(id?: string) {
-    id ? handleSelectedContent(id) : handleCancelSelectContent();
-    setEditMode(true);
-  }
-
-  function handleFormClose() {
-    setEditMode(false);
-  }
+    contentStore.loadContents();
+  }, [contentStore]);
 
   function handleCandEContent(content: Content) {
     setSubmitting(true);
@@ -67,24 +46,18 @@ function App() {
 
   function handleDeleteContent(id: string) {
     setContents([...contents.filter((x) => x.id !== id)]);
-    handleFormClose();
+    // handleFormClose();
   }
 
-  if (loading) return <LoadingComponent />;
+  if (contentStore.loadingInitial) return <LoadingComponent />;
 
   return (
     <div className=" overflow-hidden">
       <Logo />
-      <NavbarSimple openForm={handleFormOpen} />
+      <NavbarSimple />
       {/* <Outlet /> */}
-      <NewsEventPage
-        contents={contents}
-        selectedContent={selectedContent}
-        selectContent={handleSelectedContent}
-        cancelSelectContent={handleCancelSelectContent}
-        editMode={editMode}
-        openForm={handleFormOpen}
-        closeForm={handleFormClose}
+      <NewEventsDashboard
+        contents={contentStore.contents}
         createOrEdit={handleCandEContent}
         deleteContent={handleDeleteContent}
         submitting={submitting}
@@ -94,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);

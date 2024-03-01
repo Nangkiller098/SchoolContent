@@ -1,4 +1,4 @@
-// import { Article } from "./Article";
+import { Article } from "./Article";
 
 export interface Content {
   id: string;
@@ -7,4 +7,5 @@ export interface Content {
   createAt: string;
   status: boolean;
   articleId: string;
+  article: Article[];
 }

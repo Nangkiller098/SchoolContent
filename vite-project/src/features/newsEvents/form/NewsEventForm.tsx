@@ -1,24 +1,27 @@
-import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  Button,
+  Input,
+  Select,
+  Textarea,
+  Typography,
+  Option,
+} from "@material-tailwind/react";
 import { Content } from "../../../app/models/Content";
 import { ChangeEvent, useEffect, useState } from "react";
 import agent from "../../../app/api/agent";
 import { Article } from "../../../app/models/Article";
+import { useStore } from "../../../app/stores/store";
 
 interface Props {
-  content: Content | undefined;
-  closeForm: () => void;
   createOrEdit: (content: Content) => void;
   deleteContent: (id: string) => void;
   submitting: boolean;
 }
 
-const NewsEventForm = ({
-  content: selectedContent,
-  closeForm,
-  createOrEdit,
-  deleteContent,
-  submitting,
-}: Props) => {
+const NewsEventForm = ({ createOrEdit, deleteContent, submitting }: Props) => {
+  const { contentStore } = useStore();
+  const { selectedContent, closeForm } = contentStore;
   const initialState = selectedContent ?? {
     id: "",
     title: "",
@@ -26,6 +29,7 @@ const NewsEventForm = ({
     createAt: "",
     status: true,
     articleId: "",
+    article: [],
   };
   const [content, setContents] = useState(initialState);
   const [articles, setArticle] = useState<Article[]>([]);
@@ -36,17 +40,20 @@ const NewsEventForm = ({
     });
   }, []);
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    console.log(content);
+    // console.log(content);
     event.preventDefault();
     createOrEdit(content);
   }
 
   function handleInputChange(
     event: ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      | HTMLInputElement
+      | HTMLTextAreaElement
+      | HTMLOptionsCollection
+      | HTMLSelectElement
     >
   ) {
-    const { name, value } = event.target;
+    const { name, value }: any = event.target;
     setContents({ ...content, [name]: value });
   }
 
@@ -71,7 +78,7 @@ const NewsEventForm = ({
           </Typography>
           <Input
             size="lg"
-            placeholder="name@mail.com"
+            placeholder="please input your Title..."
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             labelProps={{
               className: "before:content-none after:content-none",
@@ -130,17 +137,19 @@ const NewsEventForm = ({
           >
             Article
           </Typography>
-          <select
+          <Select
+            color="blue"
             name="articleId"
-            onChange={handleInputChange}
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            label="Select Article"
+            placeholder={undefined}
+            onChange={() => handleInputChange}
           >
             {articles.map((article) => (
-              <option key={article.id} value={article.id}>
+              <Option value={article.id} key={article.id}>
                 {article.articleName}
-              </option>
+              </Option>
             ))}
-          </select>
+          </Select>
           <Button
             type="submit"
             loading={submitting}

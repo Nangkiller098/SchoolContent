@@ -1,47 +1,32 @@
+/* eslint-disable react-refresh/only-export-components */
+import { observer } from "mobx-react-lite";
 import { Content } from "../../app/models/Content";
+import { useStore } from "../../app/stores/store";
 import NewsEventsList from "./NewsEventsList";
 import NewEventDetails from "./details/NewEventDetails";
 import NewsEventForm from "./form/NewsEventForm";
 
 interface Props {
   contents: Content[];
-  selectedContent: Content | undefined;
-  selectContent: (id: string) => void;
-  cancelSelectContent: () => void;
-  editMode: boolean;
-  openForm: (id: string) => void;
-  closeForm: () => void;
   createOrEdit: (content: Content) => void;
   deleteContent: (id: string) => void;
   submitting: boolean;
 }
 const NewEventsDashboard = ({
   contents,
-  selectContent,
-  selectedContent,
-  cancelSelectContent,
-  editMode,
-  openForm,
-  closeForm,
   createOrEdit,
   deleteContent,
   submitting,
 }: Props) => {
+  const { contentStore } = useStore();
+  const { selectedContent, editMode } = contentStore;
   return (
     <div className="flex justify-center">
-      <NewsEventsList contents={contents} selectContent={selectContent} />
-      {selectedContent && !editMode && (
-        <NewEventDetails
-          content={selectedContent}
-          cancelSelectContent={cancelSelectContent}
-          openForm={openForm}
-        />
-      )}
+      <NewsEventsList contents={contents} />
+      {selectedContent && !editMode && <NewEventDetails />}
       {editMode && (
         <NewsEventForm
           submitting={submitting}
-          closeForm={closeForm}
-          content={selectedContent}
           createOrEdit={createOrEdit}
           deleteContent={deleteContent}
         />
@@ -50,4 +35,4 @@ const NewEventsDashboard = ({
   );
 };
 
-export default NewEventsDashboard;
+export default observer(NewEventsDashboard);

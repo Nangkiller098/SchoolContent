@@ -22,7 +22,8 @@ namespace Application.Contents
                 {
                     return await _context.Contents
                     .Include(q => q.Article)
-                    .FirstOrDefaultAsync(q => q.Id == request.Id);
+                    .Where(c => c.Id == request.Id)
+                    .FirstOrDefaultAsync();
 
                 }
             }

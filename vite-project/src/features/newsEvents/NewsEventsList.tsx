@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   Avatar,
   Button,
@@ -8,12 +9,15 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { Content } from "../../app/models/Content";
+import { useStore } from "../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
 interface Props {
   contents: Content[];
-  selectContent: (id: string) => void;
 }
-const NewsEventsList = ({ contents, selectContent }: Props) => {
+const NewsEventsList = ({ contents }: Props) => {
+  const { contentStore } = useStore();
+  const { selectContent } = contentStore;
   return (
     <>
       <Card
@@ -74,4 +78,4 @@ const NewsEventsList = ({ contents, selectContent }: Props) => {
   );
 };
 
-export default NewsEventsList;
+export default observer(NewsEventsList);

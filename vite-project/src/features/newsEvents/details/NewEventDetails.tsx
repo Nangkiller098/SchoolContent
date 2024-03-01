@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   Button,
   Card,
@@ -6,14 +7,19 @@ import {
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
-import { Content } from "../../../app/models/Content";
+import { useStore } from "../../../app/stores/store";
+import { LoadingComponent } from "../../../app/layout/LoadingComponent";
+import { observer } from "mobx-react-lite";
 
-interface Props {
-  content: Content;
-  cancelSelectContent: () => void;
-  openForm: (id: string) => void;
-}
-const NewEventDetails = ({ content, cancelSelectContent, openForm }: Props) => {
+const NewEventDetails = () => {
+  const { contentStore } = useStore();
+  const {
+    openForm,
+    cancelSelectedContent,
+    selectedContent: content,
+  } = contentStore;
+  if (!content) return <LoadingComponent />;
+
   return (
     <>
       <div>
@@ -63,7 +69,7 @@ const NewEventDetails = ({ content, cancelSelectContent, openForm }: Props) => {
             >
               Edit
             </Button>
-            <Button onClick={cancelSelectContent} placeholder={undefined}>
+            <Button onClick={cancelSelectedContent} placeholder={undefined}>
               Cancel
             </Button>
           </CardFooter>
@@ -73,4 +79,4 @@ const NewEventDetails = ({ content, cancelSelectContent, openForm }: Props) => {
   );
 };
 
-export default NewEventDetails;
+export default observer(NewEventDetails);
