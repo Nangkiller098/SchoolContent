@@ -13,7 +13,7 @@ namespace API.Controllers
             return await Mediator.Send(new List.Query());
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Content>> GetContent(int id)
+        public async Task<ActionResult<Content>> GetContent(Guid id)
         {
             return await Mediator.Send(new Details.Query { Id = id });
         }

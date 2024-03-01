@@ -20,6 +20,7 @@ namespace Application.Contents
             {
                 return await _context.Contents
                 .Include(c => c.Article)
+                .Where(c => c.Status == true)
                 .ToListAsync();
             }
         }

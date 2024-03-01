@@ -1,4 +1,4 @@
-import { Article } from "./Article";
+// import { Article } from "./Article";
 
 export interface Content {
   id: string;
@@ -6,5 +6,5 @@ export interface Content {
   description?: string;
   createAt: string;
   status: boolean;
-  article: Article[];
+  articleId: string;
 }

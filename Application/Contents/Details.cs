@@ -1,5 +1,6 @@
 using Domain;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Contents
@@ -8,7 +9,7 @@ namespace Application.Contents
     {
         public class Query : IRequest<Content>
         {
-            public int Id { get; set; }
+            public Guid Id { get; set; }
             public class Handler : IRequestHandler<Query, Content>
             {
                 private readonly DataContext _context;
@@ -19,7 +20,9 @@ namespace Application.Contents
 
                 public async Task<Content> Handle(Query request, CancellationToken cancellationToken)
                 {
-                    return await _context.Contents.FindAsync(request.Id);
+                    return await _context.Contents
+                    .Include(q => q.Article)
+                    .FirstOrDefaultAsync(q => q.Id == request.Id);
 
                 }
             }

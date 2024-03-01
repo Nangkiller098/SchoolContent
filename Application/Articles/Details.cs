@@ -8,7 +8,7 @@ namespace Application.Articles
     {
         public class Query : IRequest<Article>
         {
-            public int Id { get; set; }
+            public Guid Id { get; set; }
             public class Handler : IRequestHandler<Query, Article>
             {
                 private readonly DataContext _context;

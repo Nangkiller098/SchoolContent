@@ -24,7 +24,7 @@ namespace Application.Contents
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var content = await _context.Contents.FindAsync(request.Content.Id);
-                request.Content.CreateAt = content.CreateAt;
+                request.Content.Status = true;
                 _mapper.Map(request.Content, content);
                 await _context.SaveChangesAsync();
             }

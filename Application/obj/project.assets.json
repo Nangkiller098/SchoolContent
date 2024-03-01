@@ -1486,19 +1486,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ripdo\\.nuget\\packages\\": {}
+    "C:\\Users\\NK\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Exercise\\SchoolContent\\Application\\Application.csproj",
+      "projectUniqueName": "D:\\Project\\SchoolContent\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "D:\\Projects\\Exercise\\SchoolContent\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\ripdo\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\Exercise\\SchoolContent\\Application\\obj\\",
+      "projectPath": "D:\\Project\\SchoolContent\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\NK\\.nuget\\packages\\",
+      "outputPath": "D:\\Project\\SchoolContent\\Application\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\ripdo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\NK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1506,17 +1511,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Projects\\Exercise\\SchoolContent\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\Projects\\Exercise\\SchoolContent\\Domain\\Domain.csproj"
+            "D:\\Project\\SchoolContent\\Domain\\Domain.csproj": {
+              "projectPath": "D:\\Project\\SchoolContent\\Domain\\Domain.csproj"
             },
-            "D:\\Projects\\Exercise\\SchoolContent\\Persistence\\Persistence.csproj": {
-              "projectPath": "D:\\Projects\\Exercise\\SchoolContent\\Persistence\\Persistence.csproj"
+            "D:\\Project\\SchoolContent\\Persistence\\Persistence.csproj": {
+              "projectPath": "D:\\Project\\SchoolContent\\Persistence\\Persistence.csproj"
             }
           }
         }
@@ -1556,7 +1562,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

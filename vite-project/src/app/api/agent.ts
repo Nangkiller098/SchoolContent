@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { Content } from "../models/Content";
+import { Article } from "../models/Article";
 
 //set sleep request api for 10000 second
 const sleep = (delay: number) => {
@@ -33,12 +34,22 @@ const requests = {
 
 const Content = {
   list: () => requests.get<Content[]>("content"),
-  details: (id: number) => requests.get<Content>(`content/${id}`),
+  details: (id: string) => requests.get<Content>(`content/${id}`),
   create: (content: Content) => requests.post<void>(`content`, content),
   update: (content: Content) =>
     requests.put<void>(`content/${content.id}`, content),
   delete: (id: string) => requests.delete<void>(`content/${id}`),
 };
+
+const Article = {
+  list: () => requests.get<Article[]>("/article"),
+  details: (id: string) => requests.get<Article>(`Article/${id}`),
+  create: (article: Article) => requests.post<void>(`article`, article),
+  update: (article: Article) =>
+    requests.put<void>(`content/${article.id}`, article),
+  delete: (id: string) => requests.delete<void>(`article/${id}`),
+};
+
 const TestErros = {
   get400Error: () => requests.get(`bugg/bad-request`),
   get401Error: () => requests.get(`bugg/unauthorised`),
@@ -47,6 +58,7 @@ const TestErros = {
   getValidationError: () => requests.get(`bugg/validation-error`),
 };
 const agent = {
+  Article,
   Content,
   TestErros,
 };

@@ -14,7 +14,7 @@ namespace API.Controllers
             return await Mediator.Send(new List.Query());
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Article>> GetArticle(int id)
+        public async Task<ActionResult<Article>> GetArticle(Guid id)
         {
             return await Mediator.Send(new Details.Query { Id = id });
         }
