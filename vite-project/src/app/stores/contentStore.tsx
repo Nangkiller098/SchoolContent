@@ -25,8 +25,7 @@ export default class ContentStore {
       const contents = await agent.Content.list();
       runInAction(() => {
         contents.forEach((content: Content) => {
-          content.createAt = content.createAt.split("T")[0];
-          this.contentRegistry.set(content.id, content);
+          this.setContent(content);
         });
         this.setLoadingInitial(false);
       });
@@ -38,25 +37,44 @@ export default class ContentStore {
     }
   };
 
+  //load content detail if not have in the cach load using api
+  loadContent = async (id: string) => {
+    let content = this.getContent(id);
+    //use in cache
+    if (content) {
+      this.selectedContent = content;
+      return content;
+    } else {
+      this.setLoadingInitial(true);
+      try {
+        //loading with api
+        content = await agent.Content.details(id);
+        this.setContent(content!);
+        runInAction(() => {
+          this.selectedContent = content;
+        });
+        this.setLoadingInitial(false);
+        return content;
+      } catch (error) {
+        console.log(error);
+        runInAction(() => {
+          this.setLoadingInitial(false);
+        });
+      }
+    }
+  };
+
+  private setContent = (content: Content) => {
+    content.createAt = content.createAt.split("T")[0];
+    this.contentRegistry.set(content.id, content);
+  };
+
+  private getContent = (id: string) => {
+    return this.contentRegistry.get(id);
+  };
+
   setLoadingInitial = (state: boolean) => {
     this.loadingInitial = state;
-  };
-
-  selectContent = (id: string) => {
-    this.selectedContent = this.contentRegistry.get(id);
-  };
-
-  cancelSelectedContent = () => {
-    this.selectedContent = undefined;
-  };
-
-  openForm = (id?: string) => {
-    id ? this.selectContent(id) : this.cancelSelectedContent();
-    this.editMode = true;
-  };
-
-  closeForm = () => {
-    this.editMode = false;
   };
 
   createContent = async (content: Content) => {
@@ -102,7 +120,6 @@ export default class ContentStore {
       await agent.Content.delete(id);
       runInAction(() => {
         this.contentRegistry.delete(id);
-        if (this.selectedContent?.id === id) this.cancelSelectedContent();
         this.loading = false;
       });
     } catch (error) {

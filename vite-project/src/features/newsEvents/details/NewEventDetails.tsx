@@ -10,15 +10,23 @@ import {
 import { useStore } from "../../../app/stores/store";
 import { LoadingComponent } from "../../../app/layout/LoadingComponent";
 import { observer } from "mobx-react-lite";
+import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const NewEventDetails = () => {
   const { contentStore } = useStore();
   const {
-    openForm,
-    cancelSelectedContent,
     selectedContent: content,
+    loadContent,
+    loadingInitial,
   } = contentStore;
-  if (!content) return <LoadingComponent />;
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) loadContent(id);
+  }, [id, loadContent]);
+
+  if (loadingInitial || !content) return <LoadingComponent />;
 
   return (
     <>
@@ -67,15 +75,14 @@ const NewEventDetails = () => {
             placeholder={undefined}
             className="flex items-center justify-between"
           >
-            <Button
-              onClick={() => openForm(content.id)}
-              placeholder={undefined}
-            >
-              Edit
-            </Button>
-            <Button onClick={cancelSelectedContent} placeholder={undefined}>
-              Cancel
-            </Button>
+            <Link to={`/manageContent/${content.id}`}>
+              {" "}
+              <Button placeholder={undefined}>Edit</Button>
+            </Link>
+            <Link to={`/content`}>
+              {" "}
+              <Button placeholder={undefined}>Cancel</Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>

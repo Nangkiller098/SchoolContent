@@ -38,23 +38,21 @@ function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const renderItems = navListMenuItems.map(({ title, url }, key) => (
-    <a href="#" key={key}>
+    <NavLink to={url} key={key}>
       <MenuItem
         className="flex flex-col  items-center gap-3 rounded-lg"
         placeholder={undefined}
       >
-        <div>
-          <Typography
-            variant="h6"
-            color="blue-gray"
-            className="flex items-center text-sm font-bold"
-            placeholder={undefined}
-          >
-            <NavLink to={url}> {title}</NavLink>
-          </Typography>
-        </div>
+        <Typography
+          variant="h6"
+          color="blue-gray"
+          className="flex items-center text-sm font-bold"
+          placeholder={undefined}
+        >
+          {title}
+        </Typography>
       </MenuItem>
-    </a>
+    </NavLink>
   ));
 
   return (
@@ -118,35 +116,41 @@ function NavList() {
       placeholder={undefined}
     >
       <Typography
-        as="a"
+        as="h6"
         href="#"
         variant="small"
         color="blue-gray"
         className="font-medium"
         placeholder={undefined}
       >
-        <ListItem
-          className="flex items-center gap-2 py-2 pr-4"
-          placeholder={undefined}
-        >
-          <NavLink to={"/"}>Home</NavLink>
-        </ListItem>
+        {" "}
+        <NavLink to={"/"}>
+          {" "}
+          <ListItem
+            className="flex items-center gap-2 py-2 pr-4"
+            placeholder={undefined}
+          >
+            Home
+          </ListItem>
+        </NavLink>
       </Typography>
       <NavListMenu />
       <Typography
-        as="a"
+        as="h6"
         href="#"
         variant="small"
         color="blue-gray"
         className="font-medium"
         placeholder={undefined}
       >
-        <ListItem
-          className="flex items-center gap-2 py-2 pr-4"
-          placeholder={undefined}
-        >
-          <NavLink to={`content/`}>Manage Content</NavLink>
-        </ListItem>
+        <NavLink to={`createContent`}>
+          <ListItem
+            className="flex items-center gap-2 py-2 pr-4"
+            placeholder={undefined}
+          >
+            Create Content
+          </ListItem>
+        </NavLink>
       </Typography>
     </List>
   );

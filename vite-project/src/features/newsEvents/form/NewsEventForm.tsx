@@ -13,19 +13,24 @@ import agent from "../../../app/api/agent";
 import { Article } from "../../../app/models/Article";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { Link, useParams } from "react-router-dom";
+import { Content } from "../../../app/models/Content";
+import { LoadingComponent } from "../../../app/layout/LoadingComponent";
 
 const NewsEventForm = () => {
   const { contentStore } = useStore();
   const {
-    selectedContent,
-    closeForm,
     createContent,
     updateContent,
     loading,
     deleteContent,
+    loadContent,
+    loadingInitial,
   } = contentStore;
 
-  const initialState = selectedContent ?? {
+  const { id } = useParams();
+
+  const [content, setContent] = useState<Content>({
     id: "",
     title: "",
     description: "",
@@ -33,8 +38,8 @@ const NewsEventForm = () => {
     status: true,
     articleId: "",
     article: [],
-  };
-  const [content, setContents] = useState(initialState);
+  });
+
   const [articles, setArticle] = useState<Article[]>([]);
   const [target, setTarget] = useState("");
 
@@ -47,10 +52,11 @@ const NewsEventForm = () => {
   }
 
   useEffect(() => {
+    if (id) loadContent(id).then((content) => setContent(content!));
     agent.Article.list().then((articles) => {
       setArticle(articles);
     });
-  }, []);
+  }, [id, loadContent]);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     content.id ? updateContent(content) : createContent(content);
@@ -66,9 +72,9 @@ const NewsEventForm = () => {
     >
   ) {
     const { name, value }: any = event.target;
-    setContents({ ...content, [name]: value });
+    setContent({ ...content, [name]: value });
   }
-
+  if (loadingInitial) return <LoadingComponent />;
   return (
     <>
       <Typography placeholder={""} variant="h4" color="blue-gray">
@@ -77,7 +83,7 @@ const NewsEventForm = () => {
       <form
         onSubmit={handleSubmit}
         autoComplete="off"
-        className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+        className="w-96 justify-center items-center"
       >
         <div className="mb-1 flex flex-col gap-6">
           <Typography
@@ -179,17 +185,20 @@ const NewsEventForm = () => {
             fullWidth
             placeholder={undefined}
             onClick={(e) => handleContentDelete(e, content.id)}
-            children={undefined}
-          />
-          <Button
-            color="amber"
-            onClick={() => closeForm()}
-            className=""
-            fullWidth
-            placeholder={undefined}
           >
-            Cancel
+            Delete
           </Button>
+          <Link to={`/content`}>
+            {" "}
+            <Button
+              color="amber"
+              className=""
+              fullWidth
+              placeholder={undefined}
+            >
+              Cancel
+            </Button>
+          </Link>
         </div>
       </form>
     </>

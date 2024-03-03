@@ -92,13 +92,16 @@ export default observer(function NewsEvents() {
                 </Typography>
               </CardBody>
               <CardFooter placeholder={""} className="pt-0">
-                <Button
-                  loading={loading}
-                  placeholder={""}
-                  className="bg-green-600"
-                >
-                  <Link to={`/content/${content.id}`}>Read More</Link>
-                </Button>
+                <Link to={`/content/${content.id}`}>
+                  {" "}
+                  <Button
+                    loading={loading}
+                    placeholder={""}
+                    className="bg-green-600"
+                  >
+                    Read More
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}
