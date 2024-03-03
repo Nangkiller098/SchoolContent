@@ -21,7 +21,6 @@ namespace Application.Contents
                 var article = _context.Articles.ToListAsync();
                 return await _context.Contents
                 .Include(c => c.Article)
-                .FirstOrDefaultAsync(c => c.ArticleId == article.Id)
                 .Where(c => c.Status == true)
                 .ToListAsync();
             }

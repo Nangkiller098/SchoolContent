@@ -36,7 +36,7 @@ export function Learning() {
                     alt="avatar"
                     variant="square"
                     size="xxl"
-                    className="w-96"
+                    className="w-96 object-fit object-center"
                   />
                 </ListItemPrefix>
                 <div>

@@ -29,7 +29,7 @@ const NewEventDetails = () => {
           alt="nature image"
         />
       </div>
-      <div className="2xl:mx-96 text-justify">
+      <div className="2xl:mx-[10vh] text-justify">
         <Card placeholder={undefined} className="w-full mt-10 justify-center">
           <CardHeader
             placeholder={undefined}
@@ -55,8 +55,12 @@ const NewEventDetails = () => {
             >
               {content.description}
             </Typography>
-            <div className="w-full">
-              <img src="/image/content.jpg" alt="ui/ux review check" />
+            <div className="w-full justify-center items-center ">
+              <img
+                src="/image/content.jpg"
+                alt="ui/ux review check"
+                className="object-fit object-center w-[100vh]"
+              />
             </div>
           </CardBody>
           <CardFooter

@@ -1,126 +1,224 @@
+import React from "react";
 import {
   Navbar,
   Collapse,
   Typography,
+  Button,
   IconButton,
+  List,
+  ListItem,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
 } from "@material-tailwind/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import React from "react";
-import { useStore } from "../stores/store";
+import {
+  ChevronDownIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import { Link, NavLink } from "react-router-dom";
 
-function NavList() {
-  const { contentStore } = useStore();
+const navListMenuItems = [
+  {
+    title: "About",
+    url: "/about",
+  },
+  {
+    title: "Contact us",
+    url: "/contact",
+  },
+  {
+    title: "News",
+    url: "/content",
+  },
+];
+
+function NavListMenu() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const renderItems = navListMenuItems.map(({ title, url }, key) => (
+    <a href="#" key={key}>
+      <MenuItem
+        className="flex flex-col  items-center gap-3 rounded-lg"
+        placeholder={undefined}
+      >
+        <div>
+          <Typography
+            variant="h6"
+            color="blue-gray"
+            className="flex items-center text-sm font-bold"
+            placeholder={undefined}
+          >
+            <NavLink to={url}> {title}</NavLink>
+          </Typography>
+        </div>
+      </MenuItem>
+    </a>
+  ));
+
   return (
-    <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        placeholder=""
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
+    <React.Fragment>
+      <Menu
+        open={isMenuOpen}
+        handler={setIsMenuOpen}
+        offset={{ mainAxis: 20 }}
+        placement="bottom"
+        allowHover={true}
       >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
+        <MenuHandler>
+          <Typography
+            as="div"
+            variant="small"
+            className="font-medium"
+            placeholder={undefined}
+          >
+            <ListItem
+              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900"
+              selected={isMenuOpen || isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen((cur) => !cur)}
+              placeholder={undefined}
+            >
+              Resources
+              <ChevronDownIcon
+                strokeWidth={2.5}
+                className={`hidden h-3 w-3 transition-transform lg:block ${
+                  isMenuOpen ? "rotate-180" : ""
+                }`}
+              />
+              <ChevronDownIcon
+                strokeWidth={2.5}
+                className={`block h-3 w-3 transition-transform lg:hidden ${
+                  isMobileMenuOpen ? "rotate-180" : ""
+                }`}
+              />
+            </ListItem>
+          </Typography>
+        </MenuHandler>
+        <MenuList
+          className="hidden max-w-screen-xl rounded-xl lg:block"
+          placeholder={undefined}
         >
-          Pages
-        </a>
-      </Typography>
-      <Typography
-        placeholder=""
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Account
-        </a>
-      </Typography>
-      <Typography
-        placeholder=""
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Blocks
-        </a>
-      </Typography>
-      <Typography
-        placeholder=""
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a
-          onClick={() => contentStore.openForm()}
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Create Content
-        </a>
-      </Typography>
-    </ul>
+          <ul className="grid grid-cols-3 gap-y-2 outline-none outline-0">
+            {renderItems}
+          </ul>
+        </MenuList>
+      </Menu>
+      <div className="block lg:hidden">
+        <Collapse open={isMobileMenuOpen}>{renderItems}</Collapse>
+      </div>
+    </React.Fragment>
   );
 }
 
-export function NavbarSimple() {
+function NavList() {
+  return (
+    <List
+      className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1"
+      placeholder={undefined}
+    >
+      <Typography
+        as="a"
+        href="#"
+        variant="small"
+        color="blue-gray"
+        className="font-medium"
+        placeholder={undefined}
+      >
+        <ListItem
+          className="flex items-center gap-2 py-2 pr-4"
+          placeholder={undefined}
+        >
+          <NavLink to={"/"}>Home</NavLink>
+        </ListItem>
+      </Typography>
+      <NavListMenu />
+      <Typography
+        as="a"
+        href="#"
+        variant="small"
+        color="blue-gray"
+        className="font-medium"
+        placeholder={undefined}
+      >
+        <ListItem
+          className="flex items-center gap-2 py-2 pr-4"
+          placeholder={undefined}
+        >
+          <NavLink to={`content/`}>Manage Content</NavLink>
+        </ListItem>
+      </Typography>
+    </List>
+  );
+}
+
+export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
 
-  const handleWindowResize = () =>
-    window.innerWidth >= 960 && setOpenNav(false);
-
   React.useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false)
+    );
   }, []);
 
   return (
-    <>
-      <Navbar placeholder="" fullWidth className=" bg-yellow-600 pr-10 w-full">
-        <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography
-            placeholder=""
-            as="a"
-            href="#"
-            variant="h6"
-            className="mr-4 cursor-pointer py-1.5"
-          >
-            Material Tailwind
-          </Typography>
-          <div className="hidden lg:block">
-            <NavList />
-          </div>
-          <IconButton
-            placeholder=""
-            variant="text"
-            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-            ripple={false}
-            onClick={() => setOpenNav(!openNav)}
-          >
-            {openNav ? (
-              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-            ) : (
-              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-            )}
-          </IconButton>
-        </div>
-        <Collapse open={openNav} className="">
+    <Navbar
+      fullWidth
+      className="px-4 py-4 bg-yellow-400"
+      placeholder={undefined}
+    >
+      <div className="flex items-center justify-between text-blue-gray-900 text-center place-items-center">
+        <Typography
+          as="a"
+          href="#"
+          variant="h6"
+          className="mr-4 cursor-pointer py-1.5 lg:ml-2"
+          placeholder={undefined}
+        >
+          <Link to="/"> School Content</Link>
+        </Typography>
+        <div className="hidden lg:block">
           <NavList />
-        </Collapse>
-      </Navbar>
-    </>
+        </div>
+        <div className="hidden gap-2 lg:flex">
+          <Button
+            variant="text"
+            size="sm"
+            color="blue-gray"
+            placeholder={undefined}
+          >
+            Log In
+          </Button>
+        </div>
+        <IconButton
+          variant="text"
+          color="blue-gray"
+          className="lg:hidden"
+          onClick={() => setOpenNav(!openNav)}
+          placeholder={undefined}
+        >
+          {openNav ? (
+            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+          ) : (
+            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+          )}
+        </IconButton>
+      </div>
+      <Collapse open={openNav}>
+        <NavList />
+        <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+          <Button
+            variant="outlined"
+            size="sm"
+            color="blue-gray"
+            fullWidth
+            placeholder={undefined}
+          >
+            Log In
+          </Button>
+        </div>
+      </Collapse>
+    </Navbar>
   );
 }

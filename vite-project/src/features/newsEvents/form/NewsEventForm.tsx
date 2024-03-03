@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Button,
@@ -7,21 +8,23 @@ import {
   Typography,
   Option,
 } from "@material-tailwind/react";
-import { Content } from "../../../app/models/Content";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import agent from "../../../app/api/agent";
 import { Article } from "../../../app/models/Article";
 import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
-interface Props {
-  createOrEdit: (content: Content) => void;
-  deleteContent: (id: string) => void;
-  submitting: boolean;
-}
-
-const NewsEventForm = ({ createOrEdit, deleteContent, submitting }: Props) => {
+const NewsEventForm = () => {
   const { contentStore } = useStore();
-  const { selectedContent, closeForm } = contentStore;
+  const {
+    selectedContent,
+    closeForm,
+    createContent,
+    updateContent,
+    loading,
+    deleteContent,
+  } = contentStore;
+
   const initialState = selectedContent ?? {
     id: "",
     title: "",
@@ -33,16 +36,25 @@ const NewsEventForm = ({ createOrEdit, deleteContent, submitting }: Props) => {
   };
   const [content, setContents] = useState(initialState);
   const [articles, setArticle] = useState<Article[]>([]);
+  const [target, setTarget] = useState("");
+
+  function handleContentDelete(
+    e: SyntheticEvent<HTMLButtonElement>,
+    id: string
+  ) {
+    setTarget(e.currentTarget.name);
+    deleteContent(id);
+  }
 
   useEffect(() => {
     agent.Article.list().then((articles) => {
       setArticle(articles);
     });
   }, []);
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    // console.log(content);
-    event.preventDefault();
-    createOrEdit(content);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    content.id ? updateContent(content) : createContent(content);
+    e.preventDefault();
   }
 
   function handleInputChange(
@@ -152,7 +164,7 @@ const NewsEventForm = ({ createOrEdit, deleteContent, submitting }: Props) => {
           </Select>
           <Button
             type="submit"
-            loading={submitting}
+            loading={loading}
             color="green"
             className=""
             fullWidth
@@ -161,14 +173,14 @@ const NewsEventForm = ({ createOrEdit, deleteContent, submitting }: Props) => {
             Create
           </Button>
           <Button
+            name={content.id}
             color="red"
-            className=""
+            loading={loading && target == content.id}
             fullWidth
             placeholder={undefined}
-            onClick={() => deleteContent(content.id)}
-          >
-            Delete
-          </Button>
+            onClick={(e) => handleContentDelete(e, content.id)}
+            children={undefined}
+          />
           <Button
             color="amber"
             onClick={() => closeForm()}
@@ -184,4 +196,4 @@ const NewsEventForm = ({ createOrEdit, deleteContent, submitting }: Props) => {
   );
 };
 
-export default NewsEventForm;
+export default observer(NewsEventForm);

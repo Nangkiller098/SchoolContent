@@ -1,9 +1,10 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { Content } from "../models/Content";
 import agent from "../api/agent";
+import { v4 as uuid } from "uuid";
 
 export default class ContentStore {
-  contents: Content[] = [];
+  contentRegistry = new Map<string, Content>();
   selectedContent: Content | undefined = undefined;
   editMode = false;
   loading = false;
@@ -11,6 +12,11 @@ export default class ContentStore {
 
   constructor() {
     makeAutoObservable(this);
+  }
+  get contentsByDate() {
+    return Array.from(this.contentRegistry.values()).sort(
+      (a, b) => Date.parse(b.createAt) - Date.parse(a.createAt)
+    );
   }
 
   loadContents = async () => {
@@ -20,7 +26,7 @@ export default class ContentStore {
       runInAction(() => {
         contents.forEach((content: Content) => {
           content.createAt = content.createAt.split("T")[0];
-          this.contents.push(content);
+          this.contentRegistry.set(content.id, content);
         });
         this.setLoadingInitial(false);
       });
@@ -37,7 +43,7 @@ export default class ContentStore {
   };
 
   selectContent = (id: string) => {
-    this.selectedContent = this.contents.find((a) => a.id === id);
+    this.selectedContent = this.contentRegistry.get(id);
   };
 
   cancelSelectedContent = () => {
@@ -51,5 +57,59 @@ export default class ContentStore {
 
   closeForm = () => {
     this.editMode = false;
+  };
+
+  createContent = async (content: Content) => {
+    this.loading = true;
+    content.id = uuid();
+    try {
+      await agent.Content.create(content);
+      runInAction(() => {
+        this.contentRegistry.set(content.id, content);
+        this.selectedContent = content;
+        this.editMode = false;
+        this.loading = false;
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
+
+  updateContent = async (content: Content) => {
+    this.loading = true;
+    try {
+      await agent.Content.update(content);
+      runInAction(() => {
+        this.contentRegistry.set(content.id, content);
+        this.selectedContent = content;
+        this.editMode = false;
+        this.loading = false;
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
+  };
+
+  deleteContent = async (id: string) => {
+    this.loading = true;
+    try {
+      await agent.Content.delete(id);
+      runInAction(() => {
+        this.contentRegistry.delete(id);
+        if (this.selectedContent?.id === id) this.cancelSelectedContent();
+        this.loading = false;
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
   };
 }

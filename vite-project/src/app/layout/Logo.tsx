@@ -2,7 +2,7 @@ const Logo = () => {
   return (
     <>
       <img
-        className="h-full w-full object-cover object-center"
+        className="h-56 w-full object-fit object-center"
         src="../mainlogo.jpg"
         alt="nature image"
       />

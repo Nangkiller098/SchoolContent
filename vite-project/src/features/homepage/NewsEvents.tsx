@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   Card,
   CardHeader,
@@ -6,13 +7,12 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import axios from "axios";
-import { Content } from "../../app/models/Content";
 import { Link } from "react-router-dom";
+import { useStore } from "../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
-export function NewsEvents() {
+export default observer(function NewsEvents() {
   const settings = {
     dots: false,
     infinite: true,
@@ -49,12 +49,9 @@ export function NewsEvents() {
       },
     ],
   };
-  const [contents, setContents] = useState<Content[]>([]);
-  useEffect(() => {
-    axios.get("http://localhost:5000/api/Content").then((response) => {
-      setContents(response.data);
-    });
-  }, []);
+  const { contentStore } = useStore();
+  const { contentsByDate, loading } = contentStore;
+
   return (
     <>
       <div className="bg-yellow-600 p-5 text-white font-bold text-lg w-full h-full">
@@ -63,9 +60,9 @@ export function NewsEvents() {
         </h1>
       </div>
 
-      <div className="slider-container 2xl:px-[40vh] lg:pb-2">
+      <div className="slider-container 2xl:px-[15vh] lg:pb-2 text-start">
         <Slider {...settings}>
-          {contents.map((content) => (
+          {contentsByDate.map((content) => (
             <Card placeholder={""} key={content.id} className="h-full w-full">
               <CardHeader
                 placeholder={""}
@@ -77,7 +74,7 @@ export function NewsEvents() {
                 <img
                   src={"/image/content.jpg"}
                   alt="ui/ux review check"
-                  className="w-full h-full"
+                  className="w-full h-full object-fill object-center"
                 />
               </CardHeader>
               <CardBody placeholder={""}>
@@ -85,15 +82,21 @@ export function NewsEvents() {
                   placeholder={""}
                   variant="h6"
                   color="blue-gray"
-                  className="mb-2 w-full h-full "
+                  className="mb-2 w-full h-full"
                 >
                   {content.title}
                 </Typography>
                 <Typography placeholder={""}>{content.createAt}</Typography>
-                <Typography placeholder={""}>{content.description}</Typography>
+                <Typography placeholder={""} variant="paragraph">
+                  {content.description}
+                </Typography>
               </CardBody>
               <CardFooter placeholder={""} className="pt-0">
-                <Button placeholder={""} className=" bg-green-600">
+                <Button
+                  loading={loading}
+                  placeholder={""}
+                  className="bg-green-600"
+                >
                   <Link to={`/content/${content.id}`}>Read More</Link>
                 </Button>
               </CardFooter>
@@ -103,4 +106,4 @@ export function NewsEvents() {
       </div>
     </>
   );
-}
+});

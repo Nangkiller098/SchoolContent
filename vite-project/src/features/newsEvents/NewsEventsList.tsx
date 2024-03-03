@@ -1,79 +1,75 @@
 /* eslint-disable react-refresh/only-export-components */
 import {
-  Avatar,
   Button,
   Card,
-  List,
-  ListItem,
-  ListItemPrefix,
+  CardBody,
+  CardFooter,
+  CardHeader,
   Typography,
 } from "@material-tailwind/react";
-import { Content } from "../../app/models/Content";
 import { useStore } from "../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 
-interface Props {
-  contents: Content[];
-}
-const NewsEventsList = ({ contents }: Props) => {
+const NewsEventsList = () => {
   const { contentStore } = useStore();
-  const { selectContent } = contentStore;
+  const { selectContent, contentsByDate, loading } = contentStore;
   return (
     <>
-      <Card
-        placeholder={""}
-        className="w-96 2xl:w-[100vh]  lg:w-full md:w-[50vh] my-10 shadow-none"
-      >
-        <List placeholder={""} className=" gap-4">
-          {" "}
-          {contents.map((content) => (
-            <ListItem
+      <div className="flex flex-col w-96 2xl:w-[130vh]  lg:w-full md:w-[70vh] my-10 ">
+        {contentsByDate.map((content) => (
+          <div>
+            <Card
               placeholder={""}
               key={content.id}
-              className=" text-center items-center flex justify-items-center 2xl:flex-row flex-col w-full lg:flex-row md:flex"
+              className="h-full w-full flex 2xl:flex-row md:w-full lg:flex-row lg:w-full md:flex-row"
             >
-              <div className="w-auto 2xl:w-[100vh] h-full  md:w-auto sm:w-full">
-                <ListItemPrefix placeholder={""} className=" px-4">
-                  <Avatar
-                    placeholder={""}
-                    variant="square"
-                    alt="candice"
-                    src="/image/content.jpg"
-                    className="w-auto h-full 2xl:h-auto"
+              <div>
+                <CardHeader
+                  placeholder={""}
+                  floated={false}
+                  shadow={false}
+                  color="transparent"
+                  className="rounded-sm 2xl:w-80 2xl:h-56 lg:w-96 md:w-80"
+                >
+                  <img
+                    src={"/image/content.jpg"}
+                    alt="ui/ux review check"
+                    className="2xl:w-full 2xl:h-full object-fill object-center"
                   />
-                </ListItemPrefix>
+                </CardHeader>
               </div>
-              <div className="text-center items-center justify-center lg:w-[100vh]">
-                <Typography
-                  placeholder={""}
-                  variant="h6"
-                  color="blue-gray"
-                  className="w-full"
-                >
-                  {content.title}
-                </Typography>
-                <Typography
-                  placeholder={""}
-                  variant="small"
-                  color="gray"
-                  className="font-normal"
-                >
-                  {content.description}
-                </Typography>
-                <div className="">
+              <div>
+                <CardBody placeholder={""} className="2xl:w-full">
+                  <Typography placeholder={""} variant="h6" color="blue-gray">
+                    <Link
+                      to={`${content.id}`}
+                      className=" hover:text-green-500"
+                    >
+                      {" "}
+                      {content.title}
+                    </Link>
+                  </Typography>
+                  <Typography placeholder={""}>{content.createAt}</Typography>
+                  <Typography placeholder={""} variant="paragraph">
+                    {content.description}
+                  </Typography>
+                </CardBody>
+                <CardFooter placeholder={""} className="pt-0">
                   <Button
+                    loading={loading}
                     onClick={() => selectContent(content.id)}
                     placeholder=""
                     className="bg-green-600"
                   >
-                    Read More
+                    <Link to={`${content.id}`}>Read More</Link>
                   </Button>
-                </div>
+                </CardFooter>
               </div>
-            </ListItem>
-          ))}
-        </List>
-      </Card>
+            </Card>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
