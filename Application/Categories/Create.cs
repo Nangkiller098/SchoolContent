@@ -1,4 +1,6 @@
 
+using Application.Core;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -6,11 +8,18 @@ namespace Application.Categories
 {
     public class Create
     {
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             public Domain.Category Category { get; set; }
         }
-        public class Handler : IRequestHandler<Command>
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Category).SetValidator(new CategoryValidator());
+            }
+        }
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -19,10 +28,13 @@ namespace Application.Categories
 
             }
 
-            public async Task Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 _context.Categories.Add(request.Category);
-                await _context.SaveChangesAsync();
+                request.Category.Status = true;
+                var result = await _context.SaveChangesAsync() > 0;
+                if (!result) return Result<Unit>.Failure("Failed to create category");
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }

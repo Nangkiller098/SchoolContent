@@ -1,3 +1,4 @@
+using Application.Core;
 using MediatR;
 using Persistence;
 
@@ -6,10 +7,10 @@ namespace Application.Categories
     public class Details
     {
 
-        public class Query : IRequest<Domain.Category>
+        public class Query : IRequest<Result<Domain.Category>>
         {
-            public int Id { get; set; }
-            public class Handler : IRequestHandler<Query, Domain.Category>
+            public Guid Id { get; set; }
+            public class Handler : IRequestHandler<Query, Result<Domain.Category>>
             {
                 private readonly DataContext _context;
                 public Handler(DataContext context)
@@ -17,11 +18,10 @@ namespace Application.Categories
                     _context = context;
                 }
 
-                public async Task<Domain.Category> Handle(Query request, CancellationToken cancellationToken)
+                public async Task<Result<Domain.Category>> Handle(Query request, CancellationToken cancellationToken)
                 {
-                    return await _context.Categories
-                    .FindAsync(request.Id)
-                    ;
+                    var category = await _context.Categories.FindAsync(request.Id);
+                    return Result<Domain.Category>.Success(category);
                 }
             }
         }

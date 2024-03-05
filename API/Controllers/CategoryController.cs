@@ -15,28 +15,27 @@ namespace API.Controllers
             return await Mediator.Send(new List.Query());
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        public async Task<ActionResult<Category>> GetCategory(Guid id)
         {
-            return await Mediator.Send(new Details.Query { Id = id });
+            return HandleResult(await Mediator.Send(new Details.Query { Id = id }));
         }
         [HttpPost]
         public async Task<ActionResult<Category>> CreateCategory(Category category)
         {
-            await Mediator.Send(new Create.Command { Category = category });
-            return Ok();
+            return HandleResult(await Mediator.Send(new Create.Command { Category = category }));
         }
         [HttpPut("{id}")]
         public async Task<ActionResult<Category>> EditCategory(Guid id, Category category)
         {
             category.Id = id;
-            await Mediator.Send(new Edit.Command { Category = category });
-            return Ok();
+            return HandleResult(await Mediator.Send(new Edit.Command { Category = category }));
+
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Content>> RemoveCategory(int id)
+        public async Task<ActionResult<Content>> RemoveCategory(Guid id)
         {
-            await Mediator.Send(new Delete.Command { Id = id });
-            return Ok();
+            return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
+
         }
 
     }
