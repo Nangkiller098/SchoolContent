@@ -1,13 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Button,
-  Input,
-  Select,
-  Textarea,
-  Typography,
-  Option,
-} from "@material-tailwind/react";
+import { Button, Select, Typography, Option } from "@material-tailwind/react";
 import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import agent from "../../../app/api/agent";
 import { Article } from "../../../app/models/Article";
@@ -16,6 +9,10 @@ import { observer } from "mobx-react-lite";
 import { Link, useParams } from "react-router-dom";
 import { Content } from "../../../app/models/Content";
 import { LoadingComponent } from "../../../app/layout/LoadingComponent";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import MyTextInput from "../../../app/common/form/MyTextInput";
+import MyTextArea from "../../../app/common/form/MyTextArea";
 
 const NewsEventForm = () => {
   const { contentStore } = useStore();
@@ -40,6 +37,10 @@ const NewsEventForm = () => {
     article: [],
   });
 
+  const validationSchema = Yup.object({
+    title: Yup.string().required("This Content Title is required"),
+  });
+
   const [articles, setArticle] = useState<Article[]>([]);
   const [target, setTarget] = useState("");
 
@@ -53,154 +54,84 @@ const NewsEventForm = () => {
 
   useEffect(() => {
     if (id) loadContent(id).then((content) => setContent(content!));
-    agent.Article.list().then((articles) => {
-      setArticle(articles);
+    agent.Article.list().then((article) => {
+      setArticle(article);
     });
   }, [id, loadContent]);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    content.id ? updateContent(content) : createContent(content);
-    e.preventDefault();
-  }
+  // function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  //   content.id ? updateContent(content) : createContent(content);
+  //   e.preventDefault();
+  // }
 
-  function handleInputChange(
-    event: ChangeEvent<
-      | HTMLInputElement
-      | HTMLTextAreaElement
-      | HTMLOptionsCollection
-      | HTMLSelectElement
-    >
-  ) {
-    const { name, value }: any = event.target;
-    setContent({ ...content, [name]: value });
-  }
+  // function handleChange(
+  //   event: ChangeEvent<
+  //     | HTMLInputElement
+  //     | HTMLTextAreaElement
+  //     | HTMLOptionsCollection
+  //     | HTMLSelectElement
+  //   >
+  // ) {
+  //   const { name, value }: any = event.target;
+  //   setContent({ ...content, [name]: value });
+  // }
+
   if (loadingInitial) return <LoadingComponent />;
   return (
     <>
       <Typography placeholder={""} variant="h4" color="blue-gray">
         News & Events
       </Typography>
-      <form
-        onSubmit={handleSubmit}
-        autoComplete="off"
-        className="w-96 justify-center items-center"
+      <Formik
+        validationSchema={validationSchema}
+        enableReinitialize
+        initialValues={content}
+        onSubmit={(values) => console.log(values)}
       >
-        <div className="mb-1 flex flex-col gap-6">
-          <Typography
-            placeholder={""}
-            variant="h6"
-            color="blue-gray"
-            className="-mb-3"
+        {({ handleSubmit }) => (
+          <Form
+            onSubmit={handleSubmit}
+            autoComplete="off"
+            className="w-full justify-center items-center"
           >
-            Title
-          </Typography>
-          <Input
-            size="lg"
-            placeholder="please input your Title..."
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
-            crossOrigin={undefined}
-            value={content.title}
-            name="title"
-            onChange={handleInputChange}
-          />
-          <Typography
-            placeholder={""}
-            variant="h6"
-            color="blue-gray"
-            className="-mb-3"
-          >
-            Description
-          </Typography>
+            <MyTextInput name="title" placeholder="Title" />
+            <MyTextArea name="description" placeholder="Description" />
+            <Field placeholder="Date" name="createAt" />
 
-          <Textarea
-            size="lg"
-            placeholder=""
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
-            value={content.description}
-            name="description"
-            onChange={handleInputChange}
-          />
-          <Typography
-            placeholder={""}
-            variant="h6"
-            color="blue-gray"
-            className="-mb-3"
-          >
-            Date
-          </Typography>
-
-          <Input
-            size="lg"
-            placeholder=""
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
-            crossOrigin={undefined}
-            value={content.createAt}
-            name="createAt"
-            onChange={handleInputChange}
-          />
-          <Typography
-            placeholder={""}
-            variant="h6"
-            color="blue-gray"
-            className="-mb-3"
-          >
-            Article
-          </Typography>
-          <Select
-            color="blue"
-            name="articleId"
-            label="Select Article"
-            placeholder={undefined}
-            onChange={() => handleInputChange}
-          >
-            {articles.map((article) => (
-              <Option value={article.id} key={article.id}>
-                {article.articleName}
-              </Option>
-            ))}
-          </Select>
-          <Button
-            type="submit"
-            loading={loading}
-            color="green"
-            className=""
-            fullWidth
-            placeholder={undefined}
-          >
-            Create
-          </Button>
-          <Button
-            name={content.id}
-            color="red"
-            loading={loading && target == content.id}
-            fullWidth
-            placeholder={undefined}
-            onClick={(e) => handleContentDelete(e, content.id)}
-          >
-            Delete
-          </Button>
-          <Link to={`/content`}>
-            {" "}
             <Button
-              color="amber"
+              type="submit"
+              loading={loading}
+              color="green"
               className=""
               fullWidth
               placeholder={undefined}
             >
-              Cancel
+              Create
             </Button>
-          </Link>
-        </div>
-      </form>
+            <Button
+              name={content.id}
+              color="red"
+              loading={loading && target == content.id}
+              fullWidth
+              placeholder={undefined}
+              onClick={(e) => handleContentDelete(e, content.id)}
+            >
+              Delete
+            </Button>
+            <Link to={`/content`}>
+              {" "}
+              <Button
+                color="amber"
+                className=""
+                fullWidth
+                placeholder={undefined}
+              >
+                Cancel
+              </Button>
+            </Link>
+          </Form>
+        )}
+      </Formik>
     </>
   );
 };
