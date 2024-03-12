@@ -2,7 +2,7 @@ import { Input, Typography } from "@material-tailwind/react";
 import { useField } from "formik";
 
 interface Props {
-  placeholder: string;
+  placeholder?: string;
   name: string;
   label?: string;
 }
@@ -11,7 +11,7 @@ export default function MyTextInput(props: Props) {
   return (
     <>
       {meta.touched && meta.error ? (
-        <Input crossOrigin={undefined} {...field} {...props} size="md" error />
+        <Input crossOrigin={undefined} {...field} {...props} size="lg" error />
       ) : (
         <Input
           crossOrigin={undefined}

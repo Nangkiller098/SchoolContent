@@ -10,6 +10,7 @@ import {
 import { useStore } from "../../app/stores/store";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 const NewsEventsList = () => {
   const { contentStore } = useStore();
@@ -46,7 +47,9 @@ const NewsEventsList = () => {
                     {content.title}
                   </Link>
                 </Typography>
-                <Typography placeholder={""}>{content.createAt}</Typography>
+                <Typography placeholder={""}>
+                  {format(content.createAt!, "dd MMM yyy h:mm aa")}
+                </Typography>
                 <Typography placeholder={""} variant="paragraph">
                   {content.description}
                 </Typography>

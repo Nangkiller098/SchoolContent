@@ -1,7 +1,5 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Select, Typography, Option } from "@material-tailwind/react";
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
+import { Button, Typography } from "@material-tailwind/react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import agent from "../../../app/api/agent";
 import { Article } from "../../../app/models/Article";
 import { useStore } from "../../../app/stores/store";
@@ -9,21 +7,17 @@ import { observer } from "mobx-react-lite";
 import { Link, useParams } from "react-router-dom";
 import { Content } from "../../../app/models/Content";
 import { LoadingComponent } from "../../../app/layout/LoadingComponent";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import MyTextInput from "../../../app/common/form/MyTextInput";
 import MyTextArea from "../../../app/common/form/MyTextArea";
+import MySelectInput from "../../../app/common/form/MySelectInput";
+import MyDateInput from "../../../app/common/form/MyDateInput";
 
+// eslint-disable-next-line react-refresh/only-export-components
 const NewsEventForm = () => {
   const { contentStore } = useStore();
-  const {
-    createContent,
-    updateContent,
-    loading,
-    deleteContent,
-    loadContent,
-    loadingInitial,
-  } = contentStore;
+  const { loading, deleteContent, loadContent, loadingInitial } = contentStore;
 
   const { id } = useParams();
 
@@ -31,7 +25,7 @@ const NewsEventForm = () => {
     id: "",
     title: "",
     description: "",
-    createAt: "",
+    createAt: new Date(),
     status: true,
     articleId: "",
     article: [],
@@ -39,10 +33,17 @@ const NewsEventForm = () => {
 
   const validationSchema = Yup.object({
     title: Yup.string().required("This Content Title is required"),
+    description: Yup.string().required("This Content description is required"),
+    createAt: Yup.date().required("This Content createAt is required"),
+    articleId: Yup.string().required("Please Select article Name "),
   });
 
   const [articles, setArticle] = useState<Article[]>([]);
   const [target, setTarget] = useState("");
+
+  const options = articles.map(function (article) {
+    return { value: article.id, label: article.articleName };
+  });
 
   function handleContentDelete(
     e: SyntheticEvent<HTMLButtonElement>,
@@ -78,7 +79,7 @@ const NewsEventForm = () => {
 
   if (loadingInitial) return <LoadingComponent />;
   return (
-    <>
+    <div className="2xl:px-56 p-5">
       <Typography placeholder={""} variant="h4" color="blue-gray">
         News & Events
       </Typography>
@@ -86,7 +87,7 @@ const NewsEventForm = () => {
         validationSchema={validationSchema}
         enableReinitialize
         initialValues={content}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log(values.articleId)}
       >
         {({ handleSubmit }) => (
           <Form
@@ -96,8 +97,18 @@ const NewsEventForm = () => {
           >
             <MyTextInput name="title" placeholder="Title" />
             <MyTextArea name="description" placeholder="Description" />
-            <Field placeholder="Date" name="createAt" />
-
+            <MyDateInput
+              placeholderText="Date"
+              name={"createAt"}
+              showTimeSelect
+              timeCaption="time"
+              dateFormat={"MMMM d,yyyy h:mm aa"}
+            />
+            <MySelectInput
+              placeholder={"Select Article"}
+              name="articleId"
+              options={options}
+            />
             <Button
               type="submit"
               loading={loading}
@@ -132,8 +143,9 @@ const NewsEventForm = () => {
           </Form>
         )}
       </Formik>
-    </>
+    </div>
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default observer(NewsEventForm);

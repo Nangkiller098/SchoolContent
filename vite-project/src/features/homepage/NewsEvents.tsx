@@ -11,6 +11,7 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import { useStore } from "../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { format } from "date-fns";
 
 export default observer(function NewsEvents() {
   const settings = {
@@ -86,7 +87,9 @@ export default observer(function NewsEvents() {
                 >
                   {content.title}
                 </Typography>
-                <Typography placeholder={""}>{content.createAt}</Typography>
+                <Typography placeholder={""}>
+                  {format(content.createAt!, "dd MMM yyy h:mm aa")}
+                </Typography>
                 <Typography placeholder={""} variant="paragraph">
                   {content.description}
                 </Typography>

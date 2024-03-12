@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { StoreContext, store } from "./app/stores/store";
 import { router } from "./app/router/Routes";
 import { RouterProvider } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   // <React.StrictMode>

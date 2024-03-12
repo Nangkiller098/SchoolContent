@@ -15,7 +15,7 @@ export default class ContentStore {
   }
   get contentsByDate() {
     return Array.from(this.contentRegistry.values()).sort(
-      (a, b) => Date.parse(b.createAt) - Date.parse(a.createAt)
+      (a, b) => b.createAt!.getTime() - a.createAt!.getTime()
     );
   }
 
@@ -65,7 +65,7 @@ export default class ContentStore {
   };
 
   private setContent = (content: Content) => {
-    content.createAt = content.createAt.split("T")[0];
+    content.createAt = new Date(content.createAt!);
     this.contentRegistry.set(content.id, content);
   };
 

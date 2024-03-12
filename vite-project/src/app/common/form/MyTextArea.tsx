@@ -11,7 +11,7 @@ export default function MyTextArea(props: Props) {
   return (
     <>
       {meta.touched && meta.error ? (
-        <Textarea {...field} {...props} size="md" error />
+        <Textarea {...field} {...props} size="lg" error />
       ) : (
         <Textarea
           size="md"

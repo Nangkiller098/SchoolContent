@@ -4,7 +4,7 @@ export interface Content {
   id: string;
   title: string;
   description?: string;
-  createAt: string;
+  createAt: Date | null;
   status: boolean;
   articleId: string;
   article: Article[];
