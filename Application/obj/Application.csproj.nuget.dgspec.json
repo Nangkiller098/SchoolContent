@@ -1,43 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\SchoolContent\\Application\\Application.csproj": {}
+    "/Users/hengsomnang/Documents/SchoolContent/Application/Application.csproj": {}
   },
   "projects": {
-    "D:\\Project\\SchoolContent\\Application\\Application.csproj": {
+    "/Users/hengsomnang/Documents/SchoolContent/Application/Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\SchoolContent\\Application\\Application.csproj",
+        "projectUniqueName": "/Users/hengsomnang/Documents/SchoolContent/Application/Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\Project\\SchoolContent\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\NK\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\SchoolContent\\Application\\obj\\",
+        "projectPath": "/Users/hengsomnang/Documents/SchoolContent/Application/Application.csproj",
+        "packagesPath": "/Users/hengsomnang/.nuget/packages/",
+        "outputPath": "/Users/hengsomnang/Documents/SchoolContent/Application/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\NK\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/hengsomnang/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\SchoolContent\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\Project\\SchoolContent\\Domain\\Domain.csproj"
+              "/Users/hengsomnang/Documents/SchoolContent/Domain/Domain.csproj": {
+                "projectPath": "/Users/hengsomnang/Documents/SchoolContent/Domain/Domain.csproj"
               },
-              "D:\\Project\\SchoolContent\\Persistence\\Persistence.csproj": {
-                "projectPath": "D:\\Project\\SchoolContent\\Persistence\\Persistence.csproj"
+              "/Users/hengsomnang/Documents/SchoolContent/Persistence/Persistence.csproj": {
+                "projectPath": "/Users/hengsomnang/Documents/SchoolContent/Persistence/Persistence.csproj"
               }
             }
           }
@@ -46,6 +39,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -81,33 +79,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Project\\SchoolContent\\Domain\\Domain.csproj": {
+    "/Users/hengsomnang/Documents/SchoolContent/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\SchoolContent\\Domain\\Domain.csproj",
+        "projectUniqueName": "/Users/hengsomnang/Documents/SchoolContent/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\Project\\SchoolContent\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\NK\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\SchoolContent\\Domain\\obj\\",
+        "projectPath": "/Users/hengsomnang/Documents/SchoolContent/Domain/Domain.csproj",
+        "packagesPath": "/Users/hengsomnang/.nuget/packages/",
+        "outputPath": "/Users/hengsomnang/Documents/SchoolContent/Domain/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\NK\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/hengsomnang/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -120,6 +111,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -141,41 +137,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Project\\SchoolContent\\Persistence\\Persistence.csproj": {
+    "/Users/hengsomnang/Documents/SchoolContent/Persistence/Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\SchoolContent\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "/Users/hengsomnang/Documents/SchoolContent/Persistence/Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "D:\\Project\\SchoolContent\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\NK\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\SchoolContent\\Persistence\\obj\\",
+        "projectPath": "/Users/hengsomnang/Documents/SchoolContent/Persistence/Persistence.csproj",
+        "packagesPath": "/Users/hengsomnang/.nuget/packages/",
+        "outputPath": "/Users/hengsomnang/Documents/SchoolContent/Persistence/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\NK\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/hengsomnang/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\SchoolContent\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\Project\\SchoolContent\\Domain\\Domain.csproj"
+              "/Users/hengsomnang/Documents/SchoolContent/Domain/Domain.csproj": {
+                "projectPath": "/Users/hengsomnang/Documents/SchoolContent/Domain/Domain.csproj"
               }
             }
           }
@@ -184,6 +173,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -215,7 +209,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -13,7 +13,6 @@ export default function MySelectInput(props: Props) {
   return (
     <>
       <Select
-        {...props}
         onChange={(e) => helpers.setValue(e.value)}
         onBlur={() => helpers.setTouched(true)}
         options={props.options}

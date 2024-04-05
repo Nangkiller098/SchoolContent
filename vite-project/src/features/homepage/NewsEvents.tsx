@@ -14,6 +14,11 @@ import { observer } from "mobx-react-lite";
 import { format } from "date-fns";
 
 export default observer(function NewsEvents() {
+  function truncate(str: string | undefined) {
+    if (str) {
+      return str.length > 100 ? str.substring(0, 70) + "..." : str;
+    }
+  }
   const settings = {
     dots: false,
     infinite: true,
@@ -85,13 +90,13 @@ export default observer(function NewsEvents() {
                   color="blue-gray"
                   className="mb-2 w-full h-full"
                 >
-                  {content.title}
+                  {truncate(content.title)}
                 </Typography>
                 <Typography placeholder={""}>
                   {format(content.createAt!, "dd MMM yyy h:mm aa")}
                 </Typography>
                 <Typography placeholder={""} variant="paragraph">
-                  {content.description}
+                  {truncate(content.description)}
                 </Typography>
               </CardBody>
               <CardFooter placeholder={""} className="pt-0">

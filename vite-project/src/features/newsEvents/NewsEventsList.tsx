@@ -15,6 +15,12 @@ import { format } from "date-fns";
 const NewsEventsList = () => {
   const { contentStore } = useStore();
   const { contentsByDate, loading } = contentStore;
+
+  function truncate(str: string | undefined) {
+    if (str) {
+      return str.length > 40 ? str.substring(0, 37) + "..." : str;
+    }
+  }
   return (
     <>
       <div className="flex flex-col w-96 2xl:w-[130vh]  lg:w-full md:w-[70vh] my-10 ">
@@ -51,7 +57,7 @@ const NewsEventsList = () => {
                   {format(content.createAt!, "dd MMM yyy h:mm aa")}
                 </Typography>
                 <Typography placeholder={""} variant="paragraph">
-                  {content.description}
+                  {truncate(content.description)}
                 </Typography>
               </CardBody>
               <CardFooter placeholder={""} className="pt-0">

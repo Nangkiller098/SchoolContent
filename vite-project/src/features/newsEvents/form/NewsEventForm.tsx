@@ -1,5 +1,5 @@
 import { Button, Typography } from "@material-tailwind/react";
-import { SyntheticEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import agent from "../../../app/api/agent";
 import { Article } from "../../../app/models/Article";
 import { useStore } from "../../../app/stores/store";
@@ -46,7 +46,8 @@ const NewsEventForm = () => {
   });
 
   function handleContentDelete(
-    e: SyntheticEvent<HTMLButtonElement>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    e: any,
     id: string
   ) {
     setTarget(e.currentTarget.name);
@@ -79,7 +80,7 @@ const NewsEventForm = () => {
 
   if (loadingInitial) return <LoadingComponent />;
   return (
-    <div className="2xl:px-56 p-5">
+    <div className="2xl:px-96 p-5">
       <Typography placeholder={""} variant="h4" color="blue-gray">
         News & Events
       </Typography>
@@ -87,7 +88,7 @@ const NewsEventForm = () => {
         validationSchema={validationSchema}
         enableReinitialize
         initialValues={content}
-        onSubmit={(values) => console.log(values.articleId)}
+        onSubmit={(values) => console.log(values.article)}
       >
         {({ handleSubmit }) => (
           <Form
@@ -106,7 +107,7 @@ const NewsEventForm = () => {
             />
             <MySelectInput
               placeholder={"Select Article"}
-              name="articleId"
+              name="article"
               options={options}
             />
             <Button

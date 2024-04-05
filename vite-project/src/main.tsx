@@ -9,6 +9,7 @@ import { StoreContext, store } from "./app/stores/store";
 import { router } from "./app/router/Routes";
 import { RouterProvider } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
+import "semantic-ui-css/semantic.min.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   // <React.StrictMode>
